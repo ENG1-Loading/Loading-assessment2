@@ -9,7 +9,14 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class ExtraChef {
     ImageButton extraChefClickable;
-
+    /*
+        * Constructor for the extra chef powerup
+        * @param utils the utils object
+        * @param screen the game screen
+        * @param powerups the powerups object
+        *
+        * @return none
+     */
     public ExtraChef(Utils utils, final GameScreen screen, final Powerups powerups) {
         extraChefClickable = utils.createImageClickable(new Texture("stopwatchplus.png"), 24, 24);
         extraChefClickable.addListener(new ClickListener() {
@@ -22,7 +29,13 @@ public class ExtraChef {
             }
         });
     }
-
+    /*
+        * Getter for the extra chef powerup
+        *
+        * @param none
+        *
+        * @return the extra chef powerup
+     */
     public ImageButton getExtraChefClickable() {return extraChefClickable;}
 
 }

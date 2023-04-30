@@ -16,7 +16,13 @@ import java.util.ArrayList;
 
 public class PotatoServeClickable {
     ImageButton potatoServeClickable;
-
+    /*
+        * Constructor for the potato station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public PotatoServeClickable(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.potatoServeClickable = utils.createImageClickable(new Texture("potatoCooked.png"), 24, 24);
         potatoServeClickable.addListener(new ClickListener() {
@@ -45,7 +51,13 @@ public class PotatoServeClickable {
             }
         });
     }
-
+    /*
+        * Getter for the potato serve clickable
+        *
+        * @param none
+        *
+        * @return potatoServeClickable
+     */
     public ImageButton getPotatoServeClickable() {
         return potatoServeClickable;
     }

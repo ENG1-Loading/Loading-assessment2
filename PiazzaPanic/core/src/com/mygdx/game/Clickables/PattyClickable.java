@@ -11,6 +11,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class PattyClickable {
     ImageButton pattyClickable;
+    /*
+        * Constructor for the patty station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public PattyClickable(Utils utils, final GameScreen screen) {
         pattyClickable = utils.createImageClickable(new Texture("rawPatty.png"), 24, 24);
         pattyClickable.addListener(new ClickListener() {
@@ -26,7 +33,13 @@ public class PattyClickable {
         });
 
     }
-
+    /*
+        * Getter for the patty station
+        *
+        * @param none
+        *
+        * @return the patty station
+     */
     public ImageButton getPattyClickable() {
         return pattyClickable;
     }

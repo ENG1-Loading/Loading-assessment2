@@ -17,7 +17,14 @@ import java.util.ArrayList;
 
 public class PizzaServeClickable {
     ImageButton pizzaServeClickable;
-
+    /*
+        * Constructor for the pizza station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+        *
+     */
     public PizzaServeClickable(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.pizzaServeClickable = utils.createImageClickable(new Texture("prepdPizza.png"), 24, 24);
         pizzaServeClickable.addListener(new ClickListener() {
@@ -53,6 +60,13 @@ public class PizzaServeClickable {
             }
         });
     }
+    /*
+        * Getter for the pizza station
+        *
+        * @param none
+        *
+        * @return the pizza station
+     */
     public ImageButton getPizzaServeClickable() {
         return pizzaServeClickable;
     }

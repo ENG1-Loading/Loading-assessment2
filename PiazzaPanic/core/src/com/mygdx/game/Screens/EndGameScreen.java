@@ -51,7 +51,12 @@ public class EndGameScreen implements Screen {
     int customersServed;
     ConfigHandler configHandler;
     JSONObject config;
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     public EndGameScreen(PiazzaPanic game, long levelCompletedIn, int RepPoints, boolean endless, int customersServed)
             throws IOException {
         // generate the styling information for the data given to this screen
@@ -66,7 +71,12 @@ public class EndGameScreen implements Screen {
         levelTimeString = humanReadableFormat(levelCompletedIn);
         this.Rep = RepPoints;
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     @Override
     public void show() {
         // size information
@@ -123,7 +133,12 @@ public class EndGameScreen implements Screen {
         restartBtn.setPosition(game.GAME_WIDTH / 2 - restartBtn.getWidth() / 2,
                 game.GAME_HEIGHT / 2 - restartBtn.getHeight() / 2 - 100);
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     @Override
     public void render(float delta) {
         screenStage.act();
@@ -165,36 +180,66 @@ public class EndGameScreen implements Screen {
 
         screenStage.draw();
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     @Override
     public void resize(int width, int height) {
         screenStage.getViewport().update(width, height);
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     @Override
     public void pause() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     @Override
     public void resume() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     @Override
     public void hide() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     @Override
     public void dispose() {
         levelCompleteFrame.dispose();
         screenStage.dispose();
     }
-
+    /*
+        * Converts a long to a human readable time format
+        * @param millis the time in milliseconds
+        *
+        * @return the time in a human readable format
+     */
     private String humanReadableFormat(long duration) {
 
         long secs = TimeUnit.MILLISECONDS.toSeconds(duration);

@@ -10,7 +10,14 @@ import com.mygdx.game.Screens.GameScreen;
 public class DoubleMoneyPowerup {
 
     ImageButton doubleMoneyClickable;
-
+    /*
+        * Constructor for the double money powerup
+        * @param utils the utils object
+        * @param screen the game screen
+        * @param powerups the powerups object
+        *
+        * @return none
+     */
     public DoubleMoneyPowerup(Utils utils, final GameScreen screen, final Powerups powerups) {
         doubleMoneyClickable = utils.createImageClickable(new Texture("doublemoney.png"), 24, 24);
         doubleMoneyClickable.addListener(new ClickListener() {
@@ -20,7 +27,13 @@ public class DoubleMoneyPowerup {
             }
         });
     }
-
+    /*
+        * Getter for the double money powerup
+        *
+        * @param none
+        *
+        * @return the double money powerup
+     */
     public ImageButton getDoubleMoneyClickable() {
         return doubleMoneyClickable;
     }

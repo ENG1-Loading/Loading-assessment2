@@ -14,7 +14,13 @@ import java.awt.*;
 
 public class LettuceClickable {
     ImageButton lettuceClickable;
-
+    /*
+        * Constructor for the lettuce station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public LettuceClickable(Utils utils, final GameScreen screen) {
         lettuceClickable = utils.createImageClickable(new Texture("lettuce.png"), 24, 24);
         lettuceClickable.addListener(new ClickListener() {
@@ -28,7 +34,13 @@ public class LettuceClickable {
             }
         });
     }
-
+    /*
+        * Getter for the lettuce station
+        *
+        * @param none
+        *
+        * @return the lettuce station
+     */
     public ImageButton getLettuceClickable() {
         return lettuceClickable;
     }

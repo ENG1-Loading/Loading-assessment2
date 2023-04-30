@@ -23,6 +23,12 @@ public class Utils {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
         }
     };
+    /*
+        * Creates a clickable image
+        * @param width the width of the image
+        * @param height the height of the image
+        * @return the clickable image
+     */
     public ImageButton createImageClickable(int width, int height) {
         Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
         TextureRegion region = new TextureRegion(new Texture(pixmap));
@@ -31,6 +37,12 @@ public class Utils {
         clickable.addListener(cursorHovering);
         return clickable;
     }
+    /* Creates a clickable image
+        * @param texture the texture of the image
+        * @param width the width of the image
+        * @param height the height of the image
+        * @return the clickable image
+     */
     public ImageButton createImageClickable(Texture texture, float width, float height) {
         TextureRegion region = new TextureRegion(texture);
         ImageButton clickable = new ImageButton(new TextureRegionDrawable(region));

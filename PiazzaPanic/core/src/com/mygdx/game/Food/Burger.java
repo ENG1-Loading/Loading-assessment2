@@ -13,6 +13,11 @@ public class Burger implements Recipe {
 
     boolean isBurnt = false;
 
+    /*
+        * Constructor for the burger recipe
+        * @param none
+        * @return none
+     */
     public Burger() {
         this.recipe = new ArrayList<Ingredient>();
         Ingredient patty = new Ingredient("patty", new Texture("rawPatty.png"), new Texture("prepdPatty.png"), new Texture("burntPatty.png"));
@@ -27,28 +32,52 @@ public class Burger implements Recipe {
         this.bugerTex = new Texture("burger.png");
         this.speechBubble = new Texture("orderBurgerBubble.png");
     }
-
+    /*
+        * Returns the recipe for the burger
+        * @param none
+        * @return recipe the recipe for the burger
+     */
     @Override
     public ArrayList<Ingredient> getRecipe() {
         return recipe;
     }
-
+    /*
+        * Returns the texture for the burger
+        * @param none
+        * @return bugerTex the texture for the burger
+     */
     @Override
     public Texture getTexture() {
         return bugerTex;
     }
-
+    /*
+        * Returns the texture for the speech bubble
+        * @param none
+        * @return speechBubble the texture for the speech bubble
+     */
     @Override
     public Texture getSpeechBubbleTexture() {
         return speechBubble;
     }
-
+    /*
+        * Returns whether the burger is burnt
+        * @param none
+        * @return isBurnt whether the burger is burnt
+     */
     public Boolean getIsBurnt() { return isBurnt; }
-
+    /*
+        * Sets the burger to burnt
+        * @param none
+        * @return none
+     */
     public void setBurnt() {
         isBurnt = true;
     }
-
+    /*
+        * Returns whether the burger is ready
+        * @param ingredients the ingredients in the stack
+        * @return whether the burger is ready
+     */
     @Override
     public Boolean has(Stack<Ingredient> ingredients) {
         boolean foundBuns = false;

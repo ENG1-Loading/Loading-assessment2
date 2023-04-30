@@ -10,6 +10,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class Serving {
     ImageButton servingClickable;
+    /*
+        * Constructor for the serving station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public Serving(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.servingClickable =  utils.createImageClickable(32, 56);
         // function exectutes when you press on the serving station on screen
@@ -29,6 +36,12 @@ public class Serving {
             }
         });
     }
+    /*
+        * Getter for the serving station
+        * @param none
+        *
+        * @return servingClickable the serving station
+     */
     public ImageButton getServingClickable() {
         return servingClickable;
     }

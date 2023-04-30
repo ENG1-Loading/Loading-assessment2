@@ -16,7 +16,13 @@ import java.util.ArrayList;
 
 public class PotatoClickable {
     ImageButton potatoClickable;
-
+    /*
+        * Constructor for the potato station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public PotatoClickable(Utils utils, final GameScreen screen) {
         this.potatoClickable = utils.createImageClickable(new Texture("potato.png"), 24,24);
         potatoClickable.addListener(new ClickListener() {
@@ -35,6 +41,13 @@ public class PotatoClickable {
         });
 
     }
+    /*
+        * Getter for the potato station
+        *
+        * @param none
+        *
+        * @return the potato station
+     */
     public ImageButton getPotatoClickable() {
         return potatoClickable;
     }

@@ -12,6 +12,14 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class SpeedPowerup {
     ImageButton speedClickable;
+    /*
+        * Constructor for the speed powerup
+        *   @param utils the utils object
+        *  @param screen the game screen
+        * @param powerups the powerups object
+        * @return none
+        *
+     */
     public SpeedPowerup(Utils utils, final GameScreen screen, final Powerups powerups ) {
         speedClickable = utils.createImageClickable(new Texture("runningManPowerup.png"), 24, 24);
         speedClickable.addListener(new ClickListener() {
@@ -21,7 +29,11 @@ public class SpeedPowerup {
             }
         });
     }
-
+    /*
+        * Getter for the speed powerup
+        * @param none
+        * @return the speed powerup
+     */
     public ImageButton getSpeedClickable() {
         return speedClickable;
     }

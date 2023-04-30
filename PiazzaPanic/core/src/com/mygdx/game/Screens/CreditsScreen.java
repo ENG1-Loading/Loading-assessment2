@@ -41,11 +41,21 @@ public class CreditsScreen implements Screen {
     TextureRegion GUIInfoRegion;
     TextureRegionDrawable GUIInfoDrawable;
     ImageButton GUIInfoBtn;
-
+    /*
+        * Constructor for the credits screen
+        * @param game the game object
+        *
+        * @return none
+     */
     public CreditsScreen(PiazzaPanic game) {
         this.game = game;
     }
-
+    /*
+        * Renders the credits screen
+        * @param delta the time between frames
+        *
+        * @return none
+     */
     @Override
     public void show() {
         System.out.println("CreditsScreen");
@@ -110,7 +120,12 @@ public class CreditsScreen implements Screen {
         gameStage.addActor(assetsInfoBtn);
         gameStage.addActor(GUIInfoBtn);
     }
-
+    /*
+        * Renders the credits screen
+        * @param delta the time between frames
+        *
+        * @return none
+     */
     @Override
     public void render(float delta) {
         gameStage.act();
@@ -136,30 +151,52 @@ public class CreditsScreen implements Screen {
         Gdx.input.setInputProcessor(gameStage);
         gameStage.draw();
     }
-
+    /*
+        * Resizes the credits screen
+        * @param width the width of the screen
+        * @param height the height of the screen
+        *
+        * @return none
+     */
     @Override
     public void resize(int width, int height) {
         gameStage.getViewport().update(width, height);
     }
-
+    /*
+        * Pauses the credits screen
+        *
+        * @return none
+     */
     @Override
     public void pause() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Resumes the credits screen
+        *
+        * @return none
+     */
     @Override
     public void resume() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Hides the credits screen
+        *
+        * @return none
+     */
     @Override
     public void hide() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Disposes the credits screen
+        *
+        * @return none
+     */
     @Override
     public void dispose() {
         credits.dispose();

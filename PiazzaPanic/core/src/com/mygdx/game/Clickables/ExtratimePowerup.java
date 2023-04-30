@@ -9,7 +9,14 @@ import com.mygdx.game.Powerups.Powerups;
 
 public class ExtratimePowerup {
     ImageButton extraTimeClickable;
-
+    /*
+        * Constructor for the extra time powerup
+        * @param utils the utils object
+        * @param screen the game screen
+        * @param powerups the powerups object
+        *
+        * @return none
+     */
     public ExtratimePowerup(Utils utils, final GameScreen screen, final Powerups powerups) {
         extraTimeClickable = utils.createImageClickable(new Texture("stopwatchplus.png"), 24, 24);
         extraTimeClickable.addListener(new ClickListener() {
@@ -19,7 +26,13 @@ public class ExtratimePowerup {
             }
         });
     }
-
+    /*
+        * Getter for the extra time powerup
+        *
+        * @param none
+        *
+        * @return the extra time powerup
+     */
     public ImageButton getExtraTimeClickable() {
         return extraTimeClickable;
     }

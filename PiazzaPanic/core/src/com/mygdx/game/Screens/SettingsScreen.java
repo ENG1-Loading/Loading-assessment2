@@ -58,7 +58,12 @@ public class SettingsScreen implements Screen {
 
     JSONObject config;
     String currentDifficulty = "Easy";
-
+    /*
+        * Constructor for the settings screen
+        * @param game the game object
+        * @param configHandler the config handler object
+        * @return none
+     */
     public SettingsScreen(PiazzaPanic game, ConfigHandler configHandler) {
         this.game = game;
         this.configHandler = configHandler;
@@ -73,7 +78,11 @@ public class SettingsScreen implements Screen {
         label.setPosition(x, y);
         return label;
     }
-
+    /*
+        * Renders the settings screen
+        * @param delta the time between frames
+        * @return none
+     */
     @Override
     public void show() {
         System.out.println("SettingsScreen");
@@ -218,7 +227,13 @@ public class SettingsScreen implements Screen {
         gameStage.addActor(difficultyButtonLabel);
 
     }
-
+    /*
+        * Render loop for the screen
+        *
+        * @param delta The time in seconds since the last render.
+        *
+        * @return none
+     */
     public void render(float delta) {
         gameStage.act();
         gameStage.draw();
@@ -244,29 +259,51 @@ public class SettingsScreen implements Screen {
         gameStage.draw();
     }
 
+    /*
+     * Resizes the settings screen graphics
+     * @param width - width of the screen
+     * @param height - height of the screen
+     * @return none
+     */
     @Override
     public void resize(int width, int height) {
         gameStage.getViewport().update(width, height);
     }
-
+    /*
+     * Pauses settings screen graphics
+     * @param none
+     * @return none
+     */
     @Override
     public void pause() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+     * Resumes the settings screen graphics
+     * @param none
+     * @return none
+     */
     @Override
     public void resume() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+     * Hides the settings screen graphics
+     * @param none
+     * @return none
+     */
     @Override
     public void hide() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Disposes the main menu screen graphics
+        * @param none
+        * @return none
+     */
     @Override
     public void dispose() {
         gameStage.dispose();

@@ -9,7 +9,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class UnlockBaking {
     ImageButton unlockBakingButton;
-
+    /*
+        * Constructor for the unlock baking button
+        * @param utils the utils object
+        * @param screen the game screen
+        * @return none
+        *
+     */
     public UnlockBaking(Utils utils, final GameScreen screen) {
         unlockBakingButton = utils.createImageClickable(new Texture("key.png"), 24, 24);
         unlockBakingButton.addListener(new ClickListener() {
@@ -23,7 +29,11 @@ public class UnlockBaking {
             }
         });
     }
-
+    /*
+        * Getter for the unlock baking button
+        * @param none
+        * @return the unlock baking button
+     */
     public ImageButton getUnlockBakingButton() {
         return unlockBakingButton;
     }

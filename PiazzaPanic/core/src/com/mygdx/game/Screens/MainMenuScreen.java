@@ -90,14 +90,22 @@ public class MainMenuScreen implements Screen {
 
     JSONObject config;
     ConfigHandler configHandler;
-
+    /*
+        * Constructor for the main menu screen
+        * @param game the game object
+        * @return none
+     */
     public MainMenuScreen(PiazzaPanic game) throws IOException {
         this.configHandler = new ConfigHandler();
         this.config = configHandler.getConfig();
         this.game = game;
 
     }
-
+    /*
+        * Initializes the main menu screen graphics
+        * @param none
+        * @return none
+     */
     @Override
     public void show() {
         logo = new Texture("Piazza_Panic_Logo.png");
@@ -227,7 +235,11 @@ public class MainMenuScreen implements Screen {
         });
 
     }
-
+    /*
+        * Renders the main menu screen graphics
+        * @param float delta
+        * @return none
+     */
     @Override
     public void render(float delta) {
         gameStage.act();
@@ -351,30 +363,51 @@ public class MainMenuScreen implements Screen {
         Gdx.input.setInputProcessor(gameStage);
         gameStage.draw();
     }
-
+    /*
+        * Resizes the main menu screen graphics
+        * @param width - width of the screen
+        * @param height - height of the screen
+        * @return none
+     */
     @Override
     public void resize(int width, int height) {
         gameStage.getViewport().update(width, height);
     }
-
+    /*
+        * Pauses the main menu screen graphics
+        * @param none
+        * @return none
+     */
     @Override
     public void pause() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Resumes the main menu screen graphics
+        * @param none
+        * @return none
+     */
     @Override
     public void resume() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Hides the main menu screen graphics
+        * @param none
+        * @return none
+     */
     @Override
     public void hide() {
         // TODO Auto-generated method stub
 
     }
-
+    /*
+        * Disposes the main menu screen graphics
+        * @param none
+        * @return none
+     */
     @Override
     public void dispose() {
         logo.dispose();

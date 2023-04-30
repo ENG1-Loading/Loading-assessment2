@@ -14,7 +14,15 @@ public class Frying {
     ImageButton fryingClickable;
 
     boolean upgraded = false;
-
+    /*
+        * Constructor for the frying station
+        *
+        * @param utils the utils object
+        * @param screen the game screen
+        * @param game the game object
+        *
+        * @return none
+     */
     public Frying(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.fryingClickable = utils.createImageClickable(32, 32);
 
@@ -79,13 +87,17 @@ public class Frying {
             }
         });
     }
-
+    /*
+        * Getter for the frying station
+        *
+        * @param none
+        *
+        * @return fryingClickable the frying station
+     */
     public ImageButton createFryingClickable() {
         return fryingClickable;
     }
 
-    public void upgrade() {
-        upgraded = true;
-    }
+
 
 }

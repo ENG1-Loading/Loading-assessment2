@@ -19,6 +19,12 @@ import java.util.ArrayList;
 
 public class Helpers {
     PiazzaPanic game;
+    /*
+        * Constructor for the helpers class
+        * @param _game the game object
+        *
+        * @return none
+     */
     public Helpers(PiazzaPanic _game) {
         this.game = _game;
     }
@@ -36,7 +42,13 @@ public class Helpers {
         }
         return listA.get(0);
     }
-
+    /*
+        * Creates a clickable image button
+        * @param texture the texture of the button
+        * @param width the width of the button
+        * @param height the height of the button
+        * @return the image button
+     */
     public static TextureRegionDrawable getColoredDrawable(int width, int height, Color color) {
         Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
         pixmap.setColor(color);
@@ -45,7 +57,14 @@ public class Helpers {
         pixmap.dispose();
         return drawable;
     }
-
+    /*
+        * Shows the current reputation points
+        * @param RepLabel the texture of the reputation label
+        * @param Rep the number of reputation points
+        * @param RepPoint the texture of the reputation point
+        *
+        * @return none
+     */
     public void showRepPoints(Texture RepLabel, int Rep, Texture RepPoint) {
         game.batch.begin();
         int x = 146;
@@ -56,6 +75,12 @@ public class Helpers {
         }
         game.batch.end();
     }
+
+    /*
+        * Gets the number of customers to serve
+        * @param customerCount the number of customers already served
+        * @return the number of customers to serve
+     */
     public int CustomersToServe(int customerCount) {
         int num = MathUtils.random(0, 10);
         if (customerCount <= 1) {

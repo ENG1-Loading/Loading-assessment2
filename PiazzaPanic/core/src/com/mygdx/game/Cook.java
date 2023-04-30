@@ -20,6 +20,11 @@ public class Cook {
     private float x;
     private float y;
     public boolean moveable;
+    /*
+        * Constructor for the cook
+        * @param skin the actor to be used as the cook
+        * @return none
+     */
     public Cook(Actor skin) {
         this.CookBody = skin;
         this.speed = 50f;
@@ -27,6 +32,16 @@ public class Cook {
         this.moveable = false;
     }
 
+    /*
+        * Method to move a cook from their current position to a station
+        * @param index the index of the station to move to
+        * @param cook the cook to move
+        * @param stations the list of stations
+        * @param powerups the powerups object
+        * @param tomove the index of the station to move to
+        * @param isAutoMove whether the cook is being moved automatically
+        * @return none
+     */
     public void move(int index, Actor cook, ArrayList<Integer> stations, Powerups powerups, int tomove, boolean isAutoMove) {
         boolean canMove = true;
         if (moveable) {
@@ -63,6 +78,11 @@ public class Cook {
             }
         }
     }
+    /*
+    * Method to move a cook from their current position to a station
+        * @param cook the cook to move
+        * @return none
+     */
     public void doUserInput(Cook cook) {
         //if (!moveable) {
         //    return;
@@ -86,15 +106,6 @@ public class Cook {
             cook.CookBody.setY(y);
         }
 
-    }
-
-    public void setMoveable(boolean val) {
-        moveable = val;
-    }
-
-//    get moveable
-    public boolean getMoveable() {
-        return moveable;
     }
 
 }

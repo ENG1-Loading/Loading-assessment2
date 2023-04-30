@@ -11,7 +11,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class Cutting {
     ImageButton cuttingClickable;
-
+    /*
+        * Constructor for the cutting station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public Cutting(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.cuttingClickable =  utils.createImageClickable(32, 32);
         // function exectutes when you press on the cutting station on screen
@@ -50,6 +56,13 @@ public class Cutting {
             }
         });
     }
+    /*
+        * Getter for the cutting station
+        *
+        * @param none
+        *
+        * @return the cutting station
+     */
     public ImageButton getCuttingClickable() {
         return cuttingClickable;
     }

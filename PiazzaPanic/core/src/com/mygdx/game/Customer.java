@@ -20,7 +20,12 @@ public class Customer {
     public String name;
     public Order customerOrder;
     public boolean bakingUnlocked = false;
-
+    /*
+        * Constructor for the cook
+        * @param skin the actor to be used as the cook
+        * @param _bakingUnlocked whether baking is unlocked
+        * @return none
+     */
     public Customer(Actor skin, boolean _bakingUnlocked) throws IOException {
         String[] names = { "Blue", "Red", "White", "Yellow" };
         this.name = names[MathUtils.random(0, 3)];
@@ -35,7 +40,11 @@ public class Customer {
 
         this.customerOrder = generateOrder();
     }
-
+    /*
+        * Method to move a customer from their current position to where they need to be
+        * @param none
+        * @return none
+     */
     public void move() {
         // method to move a cook from their current position to a station
         if (!atCounter) {
@@ -61,7 +70,11 @@ public class Customer {
         } else {
         }
     }
-
+    /*
+        * Method to generate a random order
+        * @param none
+        * @return none
+     */
     private Order generateOrder() throws IOException {
         FoodMenu menu = new FoodMenu(bakingUnlocked);
         return menu.getRandomOrder();

@@ -15,6 +15,15 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class SaladClickable {
     ImageButton saladClickable;
+    /*
+        * Constructor for the salad station
+        *
+        * @param _game the game object
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public SaladClickable(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.saladClickable = utils.createImageClickable(new Texture("salad.png"),24,24);
         saladClickable.addListener(new ClickListener() {
@@ -52,7 +61,13 @@ public class SaladClickable {
         });
 
     }
-
+    /*
+        * Getter for the salad clickable
+        *
+        * @param none
+        *
+        * @return the salad clickable
+     */
     public ImageButton getSaladClickable() {
         return saladClickable;
     }

@@ -22,7 +22,14 @@ public class Savegame {
 
     ImageButton saveClickable;
     GameScreen screen;
-
+    /*
+    * Constructor for the savegame
+    *   @param _game the game object
+    *   @param utils the utils object
+    *   @param _screen the game screen
+    *
+    *   @return none
+     */
     public Savegame(PiazzaPanic _game, Utils utils, final GameScreen _screen) throws IOException {
         this.screen = _screen;
         this.saveClickable = utils.createImageClickable(new Texture("Save.png"),24,24);
@@ -33,12 +40,13 @@ public class Savegame {
             }
         });
     }
-    /*
-    * Time taken
-    * Money
-    * Customers served
-    * */
 
+    /*
+        * Saves the state of the game
+        *  @param none
+        *
+        * @return true if the game was saved successfully, false otherwise
+     */
     public Boolean saveState() {
         DateFormat dform = new SimpleDateFormat("ddMMyySS");
         Date obj = new Date();
@@ -67,6 +75,12 @@ public class Savegame {
         return true;
     }
 
+    /*
+        * Getter for the savegame
+        *  @param none
+        *
+        * @return the savegame
+     */
     public ImageButton getSaveClickable() {return saveClickable;}
 }
 

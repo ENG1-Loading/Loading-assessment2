@@ -10,6 +10,14 @@ import com.mygdx.game.Screens.GameScreen;
 public class StationSpeedPowerup {
 
     ImageButton stationSpeedClickable;
+    /*
+        * Constructor for the station speed powerup
+        * @param utils the utils object
+        * @param screen the game screen
+        * @param powerups the powerups object
+        *
+        * @return none
+     */
     public StationSpeedPowerup(Utils utils, final GameScreen screen, final Powerups powerups ) {
         stationSpeedClickable = utils.createImageClickable(new Texture("stopwatch.png"), 24, 24);
         stationSpeedClickable.addListener(new ClickListener() {
@@ -21,7 +29,13 @@ public class StationSpeedPowerup {
         });
 
     }
-
+    /*
+        * Getter for the station speed powerup
+        *
+        * @param none
+        *
+        * @return the station speed powerup
+     */
     public ImageButton getStationClickable() {
         return stationSpeedClickable;
     }

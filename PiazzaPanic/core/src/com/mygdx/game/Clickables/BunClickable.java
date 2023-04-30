@@ -11,6 +11,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class BunClickable {
     ImageButton bunClickable;
+    /*
+        * Constructor for the bun station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public BunClickable(Utils utils, final GameScreen screen) {
         bunClickable = utils.createImageClickable(new Texture("buns.png"), 24, 24);
         bunClickable.addListener(new ClickListener() {
@@ -26,7 +33,13 @@ public class BunClickable {
             }
         });
     }
-
+    /*
+        * Getter for the bun station
+        *
+        * @param none
+        *
+        * @return the bun station
+     */
     public ImageButton getBunClickable() {
         return bunClickable;
     }

@@ -19,7 +19,14 @@ public class Powerups {
     Money money;
     private PiazzaPanic game;
     private Screen screen;
-
+    /*
+        * Constructor for the Powerups class
+        * @param _game the game
+        * @param _money the money
+        * @param _screen the screen
+        * @param difficulty the difficulty of the game
+        * @return none
+     */
     public Powerups(PiazzaPanic _game, Money _money, Screen _screen, String difficulty) {
         this.game = _game;
         int priceIncrease;
@@ -48,11 +55,19 @@ public class Powerups {
         font.getData().setScale(0.25f);
         this.screen = _screen;
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public float getSpeedMultiplier() {
         return allPowerups.get("Speed").getValue();
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public void setSpeedMultiplier(int multiplier) {
         boolean bought = buyPowerup("Speed");
         if (bought) {
@@ -63,7 +78,11 @@ public class Powerups {
         }
 
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public boolean setChefCount(int count) {
         boolean bought = buyPowerup("ExtraChef");
         if (bought) {
@@ -75,16 +94,28 @@ public class Powerups {
             return false;
         }
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public boolean hasExtraTime() {
         // return true;
         return allPowerups.get("ExtraTime").getTimesBought() != 0;
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public float getStationSpeed() {
         return allPowerups.get("FastStations").getValue();
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public void setStationSpeed(float multiplier) {
         boolean bought = buyPowerup("FastStations");
         if (bought) {
@@ -94,7 +125,11 @@ public class Powerups {
             System.out.println("Not enough money for this.");
         }
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public boolean buyExtraTime() {
         if (allPowerups.get("ExtraTime").getTimesBought() > 0) {
             return false;
@@ -111,7 +146,11 @@ public class Powerups {
 
         return bought;
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public boolean buyRep() {
         if (allPowerups.get("ExtraLife").getTimesBought() > 0) {
             return false;
@@ -124,7 +163,11 @@ public class Powerups {
         System.out.println(bought);
         return bought;
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public boolean buyDoubleMoney() {
         boolean bought = buyPowerup("DoubleMoney");
         if (bought) {
@@ -133,7 +176,11 @@ public class Powerups {
 
         return bought;
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public boolean buyPowerup(String powerup) {
         int price = allPowerups.get(powerup).getPrice();
         System.out.println("got here");
@@ -147,12 +194,20 @@ public class Powerups {
             return false;
         }
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public void resetPowerup(String k) {
         allPowerups.get(k).setInitialisedTime(0);
         allPowerups.get(k).setValue(1);
     }
-
+    /*
+        * Returns the powerup
+        * @param name the name of the powerup
+        * @return the powerup
+     */
     public void checkPowerups() {
         for (String k : allPowerups.keySet()) {
             if (allPowerups.get(k).getInitialisedTime() != 0) {

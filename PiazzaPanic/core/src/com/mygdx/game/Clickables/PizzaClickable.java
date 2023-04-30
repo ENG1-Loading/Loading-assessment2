@@ -11,7 +11,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class PizzaClickable {
     ImageButton pizzaClickable;
-
+    /*
+        * Constructor for the pizza station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public PizzaClickable(Utils utils, final GameScreen screen) {
         this.pizzaClickable = utils.createImageClickable(new Texture("rawPizza.png"), 24, 24);
         pizzaClickable.addListener(new ClickListener() {
@@ -30,7 +36,13 @@ public class PizzaClickable {
             }
         });
     }
-
+    /*
+        * Getter for the pizza station
+        *
+        * @param none
+        *
+        * @return the pizza station
+     */
     public ImageButton getPizzaClickable() {
         return pizzaClickable;
     }

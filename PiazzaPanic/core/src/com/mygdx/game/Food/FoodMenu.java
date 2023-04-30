@@ -10,6 +10,11 @@ public class FoodMenu {
 
     private final ArrayList<Order> orderOptions;
     public boolean bakingUnlocked = false;
+    /*
+        * Constructor for the food menu
+        * @param none
+        * @return none
+     */
     public FoodMenu(boolean _bakingUnlocked) throws IOException {
         this.orderOptions = new ArrayList<>();
 
@@ -20,11 +25,19 @@ public class FoodMenu {
         this.orderOptions.add(new Order("pizza", new Texture("orderPizza.png"), new Pizza()));
         bakingUnlocked = _bakingUnlocked;
     }
-
+    /*
+        * Returns the order options
+        * @param none
+        * @return orderOptions the order options
+     */
     public ArrayList<Order> getOrderOptions() {
         return orderOptions;
     }
-
+    /*
+        * Returns a random order
+        * @param none
+        * @return orderOptions.get(MathUtils.random(0, 3)) a random order
+     */
     public Order getRandomOrder() {
 //        return orderOptions.get(2);
         if (bakingUnlocked) {
@@ -35,9 +48,4 @@ public class FoodMenu {
 
     }
 
-    // Uncomment when logic added for adding a baking station
-    public void addNewMenuItems() {
-        // orderOptions.add(new Order("pizza", new Texture("orderPizza.png"), new
-        // Pizza()));
-    }
 }

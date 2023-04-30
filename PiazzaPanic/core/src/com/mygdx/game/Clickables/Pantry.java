@@ -10,6 +10,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class Pantry {
     ImageButton pantryClickable;
+    /*
+        * Constructor for the pantry
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public Pantry(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.pantryClickable =  utils.createImageClickable(32, 32);
         Array<Cook> cooks = screen.getCooks();
@@ -30,6 +37,12 @@ public class Pantry {
         });
 
     }
+    /*
+        * Getter for the pantry
+        * @param none
+        *
+        * @return pantryClickable the pantry
+     */
     public ImageButton getPantryClickable() {
         return pantryClickable;
     }

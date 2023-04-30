@@ -11,6 +11,12 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class TomatoClickable {
     ImageButton tomatoClickable;
+    /*
+        * Constructor for the tomato clickable
+        * @param utils the utils object
+        * @param screen the game screen
+        * @return none
+     */
     public TomatoClickable(Utils utils, final GameScreen screen) {
         tomatoClickable = utils.createImageClickable(new Texture("tomato.png"), 24, 24);
         tomatoClickable.addListener(new ClickListener() {
@@ -26,7 +32,11 @@ public class TomatoClickable {
 
 
     }
-
+    /*
+        * Getter for the tomato clickable
+        * @param none
+        * @return the tomato clickable
+     */
     public ImageButton getTomatoClickable() {
         return tomatoClickable;
     }

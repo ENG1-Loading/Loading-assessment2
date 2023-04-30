@@ -11,7 +11,11 @@ public class PiazzaPanic extends Game {
     public final int GAME_HEIGHT = 720;
     public SpriteBatch batch;
     // private FitViewport fit;
-
+    /*
+        * Creates the game
+        * @param none
+        * @return none
+     */
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -23,12 +27,21 @@ public class PiazzaPanic extends Game {
             e.printStackTrace();
         }
     }
-
+    /*
+        * Renders the game
+        * @param none
+        * @return none
+     */
     @Override
     public void render() {
         super.render();
     }
 
+    /*
+        * Disposes of the game
+        * @param none
+        * @return none
+     */
     @Override
     public void dispose() {
         batch.dispose();

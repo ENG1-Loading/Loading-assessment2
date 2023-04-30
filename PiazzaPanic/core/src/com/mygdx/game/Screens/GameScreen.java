@@ -215,6 +215,19 @@ public class GameScreen implements Screen {
 
     boolean isInitialMove = true;
     boolean thirdChefUnlocked = false;
+    /*
+        * Constructor for the game screen
+        *
+        * @param game the game object
+        * @param port the viewport
+        * @param isEndless whether the game is endless or not
+        * @param isLoad whether the game is being loaded or not
+        * @param Loadfile the file to load from
+        * @param config the config file
+        * @throws IOException
+        *
+        * @return none
+     */
     public GameScreen(PiazzaPanic game, FitViewport port, Boolean isEndless, Boolean isLoad, String Loadfile,
             JSONObject config) throws IOException {
 
@@ -420,26 +433,54 @@ public class GameScreen implements Screen {
 
     }
 
+    /*
+        * Gets the game time
+        *
+        * @return gameTime
+     */
     public long getGameTime() {
         return gameTime;
     }
-
+    /*
+        * Gets stations currently being used
+        *
+        * @return none
+     */
     public void setSationSelected(int value) {
         stationSelected.set(selected, value);
     }
-
+    /*
+        * Gets current cook selected
+        *
+        * @return selected
+     */
     public int getSelected() {
         return selected;
     }
 
+    /*
+       * Gets the array of cooks
+       *
+       * @return cooks
+     */
     public Array<Cook> getCooks() {
         return cooks;
     }
-
+    /*
+        * Increment frying clicked
+        *
+        * @return none
+     */
     public void incrementFryingClicked() {
         fryingClicked++;
     }
-
+    /*
+        * Used to buy a third chef
+        *
+        * @param chefCount the number of chefs
+        *
+        * @return none
+     */
     public void setChef(int chefCount) {
         thirdChefUnlocked = true;
         int freeStation = helpers.findFreeStation(stationSelected);
@@ -462,79 +503,196 @@ public class GameScreen implements Screen {
 //        return listA.get(0);
 //    }
 
-
+    /*
+        * Increments the number of times baking is clicked
+        *
+        * @return none
+     */
     public void incrementBakingClicked() {
         bakingClicked++;
     }
 
+    /*
+        * Gets the number of times frying is clicked
+        *
+        * @return fryingClicked
+     */
     public int getFryingClicked() {
         return fryingClicked;
     }
-
+    /*
+        * Gets the number of times baking is clicked
+        *
+        * @return bakingClicked
+     */
     public int getBakingClicked() {
         return bakingClicked;
     }
-
+    /*
+        * Gets whether baking is unlocked
+        *
+        * @return bakingUnlocked
+     */
     public boolean bakingUnlocked() {
         return bakingUnlocked;
     }
-
+    /*
+        * Unlocks baking
+        *
+        * @param value  whether baking is unlocked
+        *
+        * @return none
+     */
     public void setBakingUnlocked(boolean value) {
         bakingUnlocked = value;
     }
-
+    /*
+        * Sets pizza to bake
+        *
+        * @param isBaking   whether pizza is baking
+        *
+        * @return none
+     */
     public void setPizzaAtBaking(Boolean isBaking) {
         pizzaAtBaking = isBaking;
     }
-
+    /*
+        * Gets whether pizza is baking
+        *
+        * @return pizzaAtBaking
+     */
     public boolean getPizzaAtBaking() {
         return pizzaAtBaking;
     }
+    /*
+        * Sets the potato to bake
+        *
+        * @param isBaking whether potato is baking
+        *
+        * @return none
+     */
     public void setAtPotatoBaking(Boolean isBaking) {potatoAtBaking = isBaking;}
+    /*
+        * Gets whether potato is baking
+        *
+        * @return potatoAtBaking
+     */
     public boolean getAtPotatoBaking() {return potatoAtBaking;}
+    /*
+        * Sets the patty to fry
+        *
+        * @param isFrying whether patty is frying
+        *
+        * @return none
+     */
     public void setPattyAtFrying(Boolean isFrying) {
         pattyAtFrying = isFrying;
     }
 
+    /*
+        * Gets whether patty is frying
+        *
+        * @return pattyAtFrying
+     */
     public boolean getPattyAtFrying() {
         return pattyAtFrying;
     }
 
+    /*
+        * Shows/hides the pantry screen
+        *
+        * @param show whether to show or hide the pantry screen
+        *
+        * @return none
+     */
     public void setShowPantryScreen(Boolean show) {
         showPantryScreen = show;
     }
 
 
-
+    /*
+        * Shows/hides the serving screen
+        *
+        * @param value whether to show or hide the serving screen
+        *
+        * @return none
+     */
     public void setShowServingScreen(Boolean value) {
         showServingScreen = value;
     }
 
+    /*
+        * Gets customers
+        *
+        * @return customers
+     */
     public ArrayList<ArrayList<Customer>> getCustomers() {
         return customers;
     }
 
+    /*
+        * Gets the number of customers
+        *
+        * @return customerCount
+     */
     public int getCustomerCount() {
         return customerCount;
     }
 
+    /*
+        * Changes the number of customers served
+        *
+        * @param amnt the amount to change by
+        *
+        * @return none
+     */
     public void increaseNumServed(int amnt) {
         NumServed += amnt;
     }
 
+    /*
+        * Changes rep
+        *
+        * @param amount the amount to change rep by
+        *
+        * @return none
+     */
     public void addRep(int amount) {
         Rep += amount;
     }
 
+    /*
+        * Gets the current money
+        *
+        * @param none
+        *
+        * @return money
+        *
+     */
     public Money getMoney() {
         return money;
     }
 
+    /*
+        * Gets the current rep
+        *
+        * @param none
+        *
+        * @return Rep
+        *
+     */
     public int getRep() {
         return Rep;
     }
 
 
+    /*
+        * Initialises the save file if supplied
+        *
+        * @param obj the JSONObject to initialise from
+        *
+        * @return none
+     */
     public void initialiseLoad(JSONObject obj) {
         Rep = (int) obj.get("rep");
         gameTime = System.currentTimeMillis() + (int) obj.get("timetaken");
@@ -543,13 +701,28 @@ public class GameScreen implements Screen {
 
     }
 
+    /*
+        * Loads the save file
+        *
+        * @param Loadfile the file to load from
+        *
+        * @return none
+     */
     public void loadJSON(String Loadfile) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(Loadfile)));
         obj = new JSONObject(content);
         initialiseLoad(obj);
     }
 
-    // Used when the clickable region has a texture
+    /*
+        * Creates a clickable image
+        *
+        * @param texture the texture to use
+        * @param width the width of the image
+        * @param height the height of the image
+        *
+        * @return clickable the clickable image
+     */
     private ImageButton createImageClickable(Texture texture, float width, float height) {
         TextureRegion region = new TextureRegion(texture);
         ImageButton clickable = new ImageButton(new TextureRegionDrawable(region));
@@ -558,9 +731,14 @@ public class GameScreen implements Screen {
         return clickable;
     }
 
-    // Used to create an invisible clickable region
+    /*
+        * Renders the game
+        *
 
-
+        * @param delta the time since the last frame
+        *
+        * @return none
+     */
     @Override
     public void render(float delta) {
         gameCam.update();
@@ -628,7 +806,13 @@ public class GameScreen implements Screen {
         // cooks.get(selected).doUserInput(cooks.get(selected));
 
     }
-
+    /*
+        * Handles the frying of the patty and controls burning
+        *
+        * @param delta the time since the last frame
+        *
+        * @return none
+     */
     public void handlePattyFrying(float delta) {
         if (pattyAtFrying) {
 
@@ -646,6 +830,13 @@ public class GameScreen implements Screen {
         }
     }
 
+    /*
+        * Handles the baking of the potato and controls burning
+        *
+        * @param delta the time since the last frame
+        *
+        * @return none
+     */
     public void handlePotatoBaking(float delta) {
             if (potatoAtBaking) {
 
@@ -662,7 +853,13 @@ public class GameScreen implements Screen {
                 potatoBakingTime = 0;
             }
     }
-
+    /*
+        * Handles the baking of the pizza and controls burning
+        *
+        * @param delta the time since the last frame
+        *
+        * @return none
+     */
     public void handlePizzaBaking(float delta) {
         if (pizzaAtBaking) {
             pizzaBakingTime += delta;
@@ -678,6 +875,15 @@ public class GameScreen implements Screen {
         }
     }
 
+    /*
+        * Controls the customers and their movement and actions
+        *
+        * @param none
+        *
+        * @throws IOException
+        *
+        * @return none
+     */
     private void customerOperations() throws IOException {
         // Check if all customers have been served
         boolean allComplete = false;
@@ -750,7 +956,13 @@ public class GameScreen implements Screen {
 
     }
 
-    // generate the cook
+    /*
+        * Spawn the cooks and add them to the stage
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void spawnCooks() {
         for (int i = 0; i < cookCount; i++) {
             Cook cook = new Cook(new Actor());
@@ -773,7 +985,15 @@ public class GameScreen implements Screen {
     }
 
 
-    // process user input
+    /*
+        * Handles the input from the user
+        *
+        * @param none
+        *
+        * @throws IOException
+        *
+        * @return none
+     */
     private void processInput() throws IOException {
         // number keys are used to select which cook is being controlled currently
         if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)) {
@@ -800,7 +1020,13 @@ public class GameScreen implements Screen {
 
     }
 
-    // update the cooks on the screen
+    /*
+        * Updates the batch with the sprites for the cooks
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void updateBatch() {
         // this section assigns each cook a sprite from the list idles
         // you could potentially update this to allow for animations for the cooks when
@@ -821,6 +1047,13 @@ public class GameScreen implements Screen {
         game.batch.end();
     }
 
+    /*
+        * Shows the orders at the top of the screen
+        *
+        * @param dt the time since the last frame
+        *
+        * @return none
+     */
     private void showOrders(float dt) {
         // displays the orders at the top of the screen
         int x = 1;
@@ -884,7 +1117,13 @@ public class GameScreen implements Screen {
             }
         }
     }
-
+    /*
+        * Shows the selected cook's stack of ingredients
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void showCookStack() {
         // display the stack of ingredients being held by the current cook
         float x = 164;
@@ -897,6 +1136,13 @@ public class GameScreen implements Screen {
         game.batch.end();
     }
 
+    /*
+        * Shows the station screens
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void showStationScreens() {
         for (Cook cook : cooks) {
             if ((Math.abs(cook.CookBody.getY() - 64f) < 2) && (Math.abs(cook.CookBody.getX() - 0f) < 2)) {
@@ -908,6 +1154,13 @@ public class GameScreen implements Screen {
         }
     }
 
+    /*
+        * Shows the serving screen
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void showServingScreen() {
         if (showServingScreen) {
             gameStage.addActor(servingScreenFrame);
@@ -928,6 +1181,13 @@ public class GameScreen implements Screen {
         }
     }
 
+    /*
+        * Shows the pantry screen
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void showPantryScreen() {
         if (showPantryScreen) {
             gameStage.addActor(pantryScreenFrame);
@@ -969,7 +1229,13 @@ public class GameScreen implements Screen {
             showPantryScreen = false;
         }
     }
-
+    /*
+        * Hides the pantry screen
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void hidePantryScreen() {
         // moves pantry screen offscreen
         pantryScreenFrame.setPosition(10000, -1);
@@ -988,7 +1254,13 @@ public class GameScreen implements Screen {
 //        cheeseClickable.setPosition(10000, -1);
         doubleMoneyClickable.setPosition(10000, -1);
     }
-
+    /*
+        * Hides the serving screen
+        *
+        * @param none
+        *
+        * @return none
+     */
     public void hideServingScreen() {
         // moves serving screen offscreen
         servingScreenFrame.setPosition(10000, -1);
@@ -999,6 +1271,17 @@ public class GameScreen implements Screen {
         potatoServeClickable.setPosition(100000, -1);
     }
 
+    /*
+        * Creates a progress bar for the selected cook
+        *
+        * @param x - x position of the progress bar
+        *
+        * @param y - y position of the progress bar
+        *
+        * @param selectedCook - the cook that the progress bar is for
+        *
+        * @return none
+     */
     public void createProgressBar(float x, float y, Cook selectedCook) {
         ProgressBarStyle style = new ProgressBarStyle();
         style.background = helpers.getColoredDrawable(20, 5, Color.GREEN);
@@ -1015,6 +1298,13 @@ public class GameScreen implements Screen {
         bars.put(bar, selectedCook);
     }
 
+    /*
+        * Updates the progress bars
+        *
+        * @param none
+        *
+        * @return none
+     */
     private void updateProgressBars() {
         if (!bars.isEmpty()) {
             for (ProgressBar bar : bars.keySet()) {
@@ -1029,35 +1319,78 @@ public class GameScreen implements Screen {
         }
     }
 
-    public void controlBurning() {
-
-    }
-
+    /*
+        * Add a multiplier to the money
+        *
+        * @param none
+        *
+        * @return none
+     */
     public void incMoneyMult() {
         money.addMultiplier();
     }
 
+    /*
+        * Controls window resizing
+        *
+        * @param width - width of the window
+        *
+        * @param height - height of the window
+        *
+        * @return none
+     */
     @Override
     public void resize(int width, int height) {
         view.update(width, height);
     }
-
+    /*
+        * Renders the game
+        *
+        * @param none
+        *
+        * @return none
+     */
     @Override
     public void show() {
     }
-
+    /*
+        * Pauses the game
+        *
+        * @param none
+        *
+        * @return none
+     */
     @Override
     public void pause() {
     }
 
+    /*
+        * Resumes the game
+        *
+        * @param none
+        *
+        * @return none
+     */
     @Override
     public void resume() {
     }
-
+    /*
+        * Hides the game
+        *
+        * @param none
+        *
+        * @return none
+     */
     @Override
     public void hide() {
     }
-
+    /*
+        * Disposes of the game
+        *
+        * @param none
+        *
+        * @return none
+     */
     @Override
     public void dispose() {
         game.batch.dispose();

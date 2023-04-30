@@ -13,6 +13,14 @@ import com.badlogic.gdx.graphics.Texture;
 public class Baking {
     ImageButton bakingClickable;
 
+    /*
+        * Constructor for the baking station
+        * @param _game the game object
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public Baking(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.bakingClickable = utils.createImageClickable(32, 32);
         // function exectutes when you press on the baking station on screen
@@ -95,7 +103,12 @@ public class Baking {
             }
         });
     }
-
+    /*
+        * Getter for the baking station
+        * @param none
+        *
+        * @return the baking station
+     */
     public ImageButton getBakingClickable() {
         return bakingClickable;
     }

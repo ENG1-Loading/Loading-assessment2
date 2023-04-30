@@ -17,6 +17,13 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class BurgerClickable {
     ImageButton burgerClickable;
+    /*
+        * Constructor for the burger station
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public BurgerClickable(PiazzaPanic _game, Utils utils, final GameScreen screen){
         this.burgerClickable = utils.createImageClickable(new Texture("burger.png"), 24, 24);
         burgerClickable.addListener(new ClickListener() {
@@ -61,6 +68,13 @@ public class BurgerClickable {
 
     }
 
+    /*
+        * Getter for the burger station
+        *
+        * @param none
+        *
+        * @return the burger station
+     */
     public ImageButton getBurgerClickable() {
         return burgerClickable;
     }

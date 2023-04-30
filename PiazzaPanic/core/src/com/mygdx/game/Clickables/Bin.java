@@ -10,6 +10,14 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class Bin {
     ImageButton binClickable;
+    /*
+        * Constructor for the bin station
+        * @param _game the game object
+        * @param utils the utils object
+        * @param screen the game screen
+        *
+        * @return none
+     */
     public Bin(PiazzaPanic _game, Utils utils, final GameScreen screen) {
         this.binClickable =  utils.createImageClickable(32, 32);
         // function exectutes when you press on the bin station on screen
@@ -32,6 +40,13 @@ public class Bin {
             }
         });
     }
+    /*
+        * Getter for the bin station
+        *
+        * @param none
+        *
+        * @return the bin station
+     */
     public ImageButton getBinClickable() {
         return binClickable;
     }

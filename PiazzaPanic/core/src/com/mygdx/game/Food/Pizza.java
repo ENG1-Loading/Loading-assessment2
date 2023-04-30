@@ -11,7 +11,11 @@ public class Pizza implements Recipe {
     Texture speechBubble;
 
     boolean isBurnt;
-
+    /*
+        * Constructor for the pizza recipe
+        * @param none
+        * @return none
+     */
     public Pizza() {
         this.recipe = new ArrayList<Ingredient>();
         Ingredient pizzaBase = new Ingredient("pizza", new Texture("rawPizza.png"), new Texture("prepdPizza.png"), null);
@@ -24,21 +28,38 @@ public class Pizza implements Recipe {
         this.pizzaTex = new Texture("prepdPizza.png");
         this.speechBubble = new Texture("orderPizzaBubble.png");
     }
+    /*
+        * Returns the recipe for the pizza
+        * @param none
+        * @return recipe the recipe for the pizza
+     */
     @Override
     public ArrayList<Ingredient> getRecipe() {
         return recipe;
     }
-
+    /*
+        * Returns the texture for the pizza
+        * @param none
+        * @return pizzaTex the texture for the pizza
+     */
     @Override
     public Texture getTexture() {
         return pizzaTex;
     }
-
+    /*
+        * Returns the texture for the speech bubble
+        * @param none
+        * @return speechBubble the texture for the speech bubble
+     */
     @Override
     public Texture getSpeechBubbleTexture() {
         return speechBubble;
     }
-
+    /*
+        * Returns whether the stack of ingredients matches the recipe
+        * @param ingredients the stack of ingredients to be checked
+        * @return true if the stack of ingredients matches the recipe, false otherwise
+     */
     @Override
     public Boolean has(Stack<Ingredient> ingredients) {
         boolean foundPizzaBase = false;
@@ -57,12 +78,20 @@ public class Pizza implements Recipe {
         }
         return foundPizzaBase && foundLettuce;
     }
-
+    /*
+        * Sets the pizza texture to the burnt pizza texture
+        * @param none
+        * @return none
+     */
     public void setBurnt() {
         isBurnt = true;
         pizzaTex = new Texture("burntPizza.png");
     }
-
+    /*
+        * Returns whether the pizza is burnt
+        * @param none
+        * @return true if the pizza is burnt, false otherwise
+     */
     public Boolean getIsBurnt() {
         return isBurnt;
     }
