@@ -14,6 +14,7 @@ public class RepPowerup {
         repButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                System.out.println("buying rep");
                 boolean repbought = powerups.buyRep();
                 if (repbought) {
                     screen.addRep(1);

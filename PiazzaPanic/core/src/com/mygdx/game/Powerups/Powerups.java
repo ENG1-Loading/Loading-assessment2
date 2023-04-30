@@ -120,7 +120,8 @@ public class Powerups {
         if (!bought) {
             System.out.println("invalid");
         }
-
+        System.out.println("Returning ");
+        System.out.println(bought);
         return bought;
     }
 
@@ -135,12 +136,14 @@ public class Powerups {
 
     public boolean buyPowerup(String powerup) {
         int price = allPowerups.get(powerup).getPrice();
-
+        System.out.println("got here");
         if (price <= money.getCurrentMoney() && (allPowerups.get(powerup).getInitialisedTime() == 0)) {
+            System.out.println("not here");
             money.removeMoney(price);
             allPowerups.get(powerup).incrementTimesBought();
             return true;
         } else {
+            System.out.println("Got here too");
             return false;
         }
     }
@@ -160,18 +163,18 @@ public class Powerups {
         }
     }
 
-    public void render() {
-        String message = "POWERUPS ACTIVE : ";
-        StringBuilder messageBuilder = new StringBuilder(message);
-        for (String k : allPowerups.keySet()) {
-            if (allPowerups.get(k).getInitialisedTime() != 0) {
-                messageBuilder.append(" ").append(k);
-            }
-        }
-        message = messageBuilder.toString();
-        game.batch.begin();
-        font.draw(game.batch, message, 127, 122);
-        game.batch.end();
-    }
+//    public void render() {
+//        String message = "POWERUPS ACTIVE : ";
+//        StringBuilder messageBuilder = new StringBuilder(message);
+//        for (String k : allPowerups.keySet()) {
+//            if (allPowerups.get(k).getInitialisedTime() != 0) {
+//                messageBuilder.append(" ").append(k);
+//            }
+//        }
+//        message = messageBuilder.toString();
+//        game.batch.begin();
+//        font.draw(game.batch, message, 127, 122);
+//        game.batch.end();
+//    }
 
 }

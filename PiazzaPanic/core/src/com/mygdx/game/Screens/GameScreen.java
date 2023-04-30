@@ -34,6 +34,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.*;
 import com.mygdx.game.Clickables.*;
+import com.mygdx.game.Helpers.*;
+
 import com.mygdx.game.Food.Burger;
 import com.mygdx.game.Food.Ingredient;
 import com.mygdx.game.Food.Order;
@@ -142,6 +144,7 @@ public class GameScreen implements Screen {
     ImageButton cheeseClickable;
     ImageButton pizzaServableClickable;
     ImageButton potatoServeClickable;
+    Helpers helpers;
 
     ImageButton doubleMoneyClickable;
     int NumServed = 0;
@@ -220,6 +223,7 @@ public class GameScreen implements Screen {
         this.view = port;
         this.config = config;
         this.customerNumber = config.getInt("customersToServe");
+        this.helpers = new Helpers(game);
 
         this.utils = new Utils();
         this.frying = new Frying(game, utils, this);
@@ -296,7 +300,7 @@ public class GameScreen implements Screen {
         spawnCooks();
         customers = new ArrayList<ArrayList<Customer>>();
         ArrayList<Customer> tmp = new ArrayList<Customer>();
-        int tmpI = CustomersToServe();
+        int tmpI = helpers.CustomersToServe(customerCount);
 
 
         for (int i = 0; i < tmpI; i++) {
@@ -437,36 +441,27 @@ public class GameScreen implements Screen {
     }
 
     public void setChef(int chefCount) {
-
-
         thirdChefUnlocked = true;
-        int freeStation = findFreeStation();
+        int freeStation = helpers.findFreeStation(stationSelected);
         isInitialMove = true;
         stationSelected.set(2, freeStation);
-
     }
 
-    public int findFreeStation() {
-        ArrayList<Integer> listA = new ArrayList<>();
-        for (int i=0;i<=5;i++) {
-            listA.add(i);
-        }
-        for (int i : stationSelected) {
-            for (int j = 0; j < listA.size(); j++) {
-                if (listA.get(j) == i) {
-                    listA.remove(j);
-                }
-            }
-        }
-        return listA.get(0);
-    }
+//    public int findFreeStation() {
+//        ArrayList<Integer> listA = new ArrayList<>();
+//        for (int i=0;i<=5;i++) {
+//            listA.add(i);
+//        }
+//        for (int i : stationSelected) {
+//            for (int j = 0; j < listA.size(); j++) {
+//                if (listA.get(j) == i) {
+//                    listA.remove(j);
+//                }
+//            }
+//        }
+//        return listA.get(0);
+//    }
 
-    public void resetCooks() {
-        for (Cook cook : cooks) {
-            cook.CookBody.remove();
-        }
-        cooks.clear();
-    }
 
     public void incrementBakingClicked() {
         bakingClicked++;
@@ -509,13 +504,7 @@ public class GameScreen implements Screen {
         showPantryScreen = show;
     }
 
-    public ArrayList<Integer> getStationSelected() {
-        return stationSelected;
-    }
 
-    public void setStationSelected(int value) {
-        stationSelected.set(selected, value);
-    }
 
     public void setShowServingScreen(Boolean value) {
         showServingScreen = value;
@@ -545,9 +534,6 @@ public class GameScreen implements Screen {
         return Rep;
     }
 
-    public void setRep(int rep) {
-        Rep = rep;
-    }
 
     public void initialiseLoad(JSONObject obj) {
         Rep = (int) obj.get("rep");
@@ -563,15 +549,6 @@ public class GameScreen implements Screen {
         initialiseLoad(obj);
     }
 
-    private static TextureRegionDrawable getColoredDrawable(int width, int height, Color color) {
-        Pixmap pixmap = new Pixmap(width, height, Format.RGBA8888);
-        pixmap.setColor(color);
-        pixmap.fill();
-        TextureRegionDrawable drawable = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
-        pixmap.dispose();
-        return drawable;
-    }
-
     // Used when the clickable region has a texture
     private ImageButton createImageClickable(Texture texture, float width, float height) {
         TextureRegion region = new TextureRegion(texture);
@@ -582,14 +559,7 @@ public class GameScreen implements Screen {
     }
 
     // Used to create an invisible clickable region
-    private ImageButton createImageClickable(int width, int height) {
-        Pixmap pixmap = new Pixmap(width, height, Format.RGBA8888);
-        TextureRegion region = new TextureRegion(new Texture(pixmap));
-        ImageButton clickable = new ImageButton(new TextureRegionDrawable(region));
-        clickable.setSize(width, height);
-        clickable.addListener(cursorHovering);
-        return clickable;
-    }
+
 
     @Override
     public void render(float delta) {
@@ -610,7 +580,8 @@ public class GameScreen implements Screen {
         showCookStack();
         showStationScreens();
         showOrders(delta);
-        showRepPoints();
+//        showRepPoints();
+        helpers.showRepPoints(RepLabel, Rep, RepPoint);
         try {
             customerOperations();
         } catch (IOException e) {
@@ -623,7 +594,7 @@ public class GameScreen implements Screen {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        powerups.render();
+//        powerups.render();
         powerups.checkPowerups();
         gameStage.draw();
 
@@ -656,17 +627,6 @@ public class GameScreen implements Screen {
 
         // cooks.get(selected).doUserInput(cooks.get(selected));
 
-    }
-
-    private void showRepPoints() {
-        game.batch.begin();
-        int x = 146;
-        game.batch.draw(RepLabel, 130, 134);
-        for (int i = 0; i < Rep; i++) {
-            game.batch.draw(RepPoint, x, 135);
-            x += 6;
-        }
-        game.batch.end();
     }
 
     public void handlePattyFrying(float delta) {
@@ -746,7 +706,7 @@ public class GameScreen implements Screen {
                             // spawn new customer
 
                             ArrayList<Customer> tmp = new ArrayList<Customer>();
-                            int tmpI = CustomersToServe();
+                            int tmpI = helpers.CustomersToServe(customerCount);
                             for (int j = 0; j < tmpI; j++) {
                                 tmp.add(new Customer(new Actor(), bakingUnlocked));
                             }
@@ -775,7 +735,7 @@ public class GameScreen implements Screen {
                     } else {
                         // TODO endless mode
                         ArrayList<Customer> tmp = new ArrayList<Customer>();
-                        int tmpI = CustomersToServe();
+                        int tmpI = helpers.CustomersToServe(customerCount);
 
                         for (int j = 0; j < tmpI; j++) {
                             tmp.add(new Customer(new Actor(), bakingUnlocked));
@@ -812,44 +772,6 @@ public class GameScreen implements Screen {
         }
     }
 
-    public int CustomersToServe() {
-        int num = MathUtils.random(0, 10);
-        if (customerCount <= 1) {
-
-            if (num <= 7) {
-                return 1;
-            } else if (num <= 9) {
-                return 2;
-            } else {
-                return 3;
-            }
-        } else if (customerCount == 2) {
-            if (num <= 5) {
-                return 1;
-            } else if (num <= 8) {
-                return 2;
-            } else {
-                return 3;
-            }
-        } else if (customerCount == 3) {
-            if (num <= 3) {
-                return 1;
-            } else if (num <= 7) {
-                return 2;
-            } else {
-                return 3;
-            }
-        } else if (customerCount <= 5) {
-            if (num <= 2) {
-                return 1;
-            } else if (num <= 5) {
-                return 2;
-            } else {
-                return 3;
-            }
-        }
-        return num % 3;
-    }
 
     // process user input
     private void processInput() throws IOException {
@@ -859,9 +781,7 @@ public class GameScreen implements Screen {
         } else if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)) {
             selected = 1;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.P)) {
-            powerups.setSpeedMultiplier(2);
-        }
+
         // TODO add statements for adding more cooks here
         if (cookCount > 2 && Gdx.input.isKeyPressed(Input.Keys.NUM_3) && thirdChefUnlocked) {
             selected = 2;
@@ -871,28 +791,13 @@ public class GameScreen implements Screen {
                 selected = i;
             }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            // debug option to mark the current customers order as complete, moving them on
-            customers.get(customerCount).get(0).orderComplete = true;
-            money.addMoney(100);
 
-        }
 
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             // return to main menu
             game.setScreen(new MainMenuScreen(game));
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.M)) {
-            // used for debugging
-            // prepares all ingredients in current cook's stack
-            for (Ingredient ingredient : cooks.get(selected).CookStack) {
-                ingredient.prepare();
-                ingredient.updateCurrentTexture();
-            }
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.L)) {
-            alienJazz.pause();
-        }
+
     }
 
     // update the cooks on the screen
@@ -1096,9 +1001,9 @@ public class GameScreen implements Screen {
 
     public void createProgressBar(float x, float y, Cook selectedCook) {
         ProgressBarStyle style = new ProgressBarStyle();
-        style.background = getColoredDrawable(20, 5, Color.GREEN);
-        style.knob = getColoredDrawable(0, 5, Color.WHITE);
-        style.knobAfter = getColoredDrawable(20, 5, Color.WHITE);
+        style.background = helpers.getColoredDrawable(20, 5, Color.GREEN);
+        style.knob = helpers.getColoredDrawable(0, 5, Color.WHITE);
+        style.knobAfter = helpers.getColoredDrawable(20, 5, Color.WHITE);
         float stepSize = powerups.getStationSpeed() * 0.05f;
         ProgressBar bar = new ProgressBar(0, 7, stepSize, false, style);
         bar.setWidth(30);
