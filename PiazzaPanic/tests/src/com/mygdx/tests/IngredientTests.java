@@ -14,7 +14,8 @@ public class IngredientTests {
         Texture notPreparedTexture = new Texture("rawPatty.png");
         Texture preparedTexture = new Texture("prepdPatty.png");
         Texture burntTexture = new Texture("burntPatty.png");
-        Ingredient ingredient = new Ingredient("patty", notPreparedTexture, preparedTexture,null);
+        Ingredient ingredient = new Ingredient("patty", notPreparedTexture, preparedTexture, burntTexture);
+
 
 
         assertEquals("patty", ingredient.name);
@@ -28,8 +29,9 @@ public class IngredientTests {
         Texture notPreparedTexture = new Texture("rawPatty.png");
         Texture preparedTexture = new Texture("prepdPatty.png");
         Texture burntTexture = new Texture("burntPatty.png");
+        Ingredient ingredient = new Ingredient("patty", notPreparedTexture, preparedTexture, burntTexture);
 
-        Ingredient ingredient = new Ingredient("patty", notPreparedTexture, preparedTexture,burntTexture);
+
 
         // Ensure that the ingredient is not prepared yet
         assertFalse(ingredient.getState());
@@ -47,16 +49,18 @@ public class IngredientTests {
         Texture notPreparedTexture1 = new Texture("rawPatty.png");
         Texture preparedTexture1 = new Texture("prepdPatty.png");
         Texture burntTexture = new Texture("burntPatty.png");
-
-        Ingredient ingredient1 = new Ingredient("patty", notPreparedTexture1, preparedTexture1,burntTexture);
+        Ingredient ingredient1 = new Ingredient("patty", notPreparedTexture1, preparedTexture1, burntTexture);
 
         Texture notPreparedTexture2 = new Texture("rawPatty.png");
         Texture preparedTexture2 = new Texture("prepdPatty.png");
-        Ingredient ingredient2 = new Ingredient("patty", notPreparedTexture2, preparedTexture2,burntTexture);
+        Texture burntTexture2 = new Texture("burntPatty.png");
+
+        Ingredient ingredient2 = new Ingredient("patty", notPreparedTexture2, preparedTexture2, burntTexture2);
 
         Texture notPreparedTexture3 = new Texture("buns.png");
         Texture preparedTexture3 = new Texture("buns.png");
-        Ingredient ingredient3 = new Ingredient("bun", notPreparedTexture3, preparedTexture3,burntTexture);
+        Ingredient ingredient3 = new Ingredient("bun", notPreparedTexture3, preparedTexture3, null);
+
 
 
         // Test if two ingredients with the same name and same prepared state are equal
@@ -75,7 +79,9 @@ public class IngredientTests {
         Texture notPreparedTexture = new Texture("rawPatty.png");
         Texture preparedTexture = new Texture("prepdPatty.png");
         Texture burntTexture = new Texture("burntPatty.png");
-        Ingredient ingredient = new Ingredient("patty", notPreparedTexture, preparedTexture,burntTexture);
+
+        Ingredient ingredient = new Ingredient("patty", notPreparedTexture, preparedTexture, burntTexture);
+
 
         // Ensure that the texture is initially set to notPreparedTexture
         assertSame(notPreparedTexture, ingredient.getCurrentTexture());

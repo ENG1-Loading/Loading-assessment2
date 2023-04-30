@@ -35,11 +35,13 @@ public class Powerups {
         Powerup stationSpeed = new Powerup("FastStations", 10000, 0, 1f, 300, 0, priceIncrease);
         Powerup orderTimeUp = new Powerup("ExtraTime", 1000000000, 0, 10, 100, 0, priceIncrease);
         Powerup thirdChef = new Powerup("ExtraChef", 1000000000, 0, 2, 100, 0, priceIncrease);
+        Powerup doubleMoney = new Powerup("DoubleMoney", 120, 0, 1, 300, 0, priceIncrease);
         allPowerups.put("Speed", speedPowerup);
         allPowerups.put("ExtraLife", extraLife);
         allPowerups.put("FastStations", stationSpeed);
         allPowerups.put("ExtraTime", orderTimeUp);
         allPowerups.put("ExtraChef", thirdChef);
+        allPowerups.put("DoubleMoney", doubleMoney);
         this.font = new BitmapFont();
         this.money = _money;
         font.setColor(Color.BLACK);
@@ -117,6 +119,15 @@ public class Powerups {
         boolean bought = buyPowerup("ExtraLife");
         if (!bought) {
             System.out.println("invalid");
+        }
+
+        return bought;
+    }
+
+    public boolean buyDoubleMoney() {
+        boolean bought = buyPowerup("DoubleMoney");
+        if (bought) {
+            ((GameScreen) screen).incMoneyMult();
         }
 
         return bought;

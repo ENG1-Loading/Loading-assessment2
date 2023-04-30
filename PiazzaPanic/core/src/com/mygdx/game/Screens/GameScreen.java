@@ -142,6 +142,8 @@ public class GameScreen implements Screen {
     ImageButton cheeseClickable;
     ImageButton pizzaServableClickable;
     ImageButton potatoServeClickable;
+
+    ImageButton doubleMoneyClickable;
     int NumServed = 0;
 
     // when you hover over a clickable it changes the cursor to a hand
@@ -192,6 +194,8 @@ public class GameScreen implements Screen {
     RepPowerup repPowerup;
     ExtratimePowerup extratimePowerup;
     ExtraChef extraChefPowerup;
+
+    DoubleMoneyPowerup doubleMoneyPowerup;
     Random rand = new Random();
 
     StationSpeedPowerup stationSpeedPowerup;
@@ -249,6 +253,8 @@ public class GameScreen implements Screen {
         this.stationSpeedPowerup = new StationSpeedPowerup(utils, this, powerups);
         this.extratimePowerup = new ExtratimePowerup(utils, this, powerups);
         this.extraChefPowerup = new ExtraChef(utils, this, powerups);
+        this.doubleMoneyPowerup = new DoubleMoneyPowerup(utils, this, powerups);
+
 
         gameStage = new Stage(view, game.batch);
 
@@ -382,6 +388,7 @@ public class GameScreen implements Screen {
         unlockBakingClickable = unlock.getUnlockBakingButton();
         pizzaServableClickable = pizzaServe.getPizzaServeClickable();
         potatoServeClickable = potatoServe.getPotatoServeClickable();
+        doubleMoneyClickable = doubleMoneyPowerup.getDoubleMoneyClickable();
         // serving screen frame
         servingScreenFrameRegion = new TextureRegion(new Texture("servingFrame.png"));
         servingScreenFrame = new ImageButton(new TextureRegionDrawable(servingScreenFrameRegion));
@@ -1032,7 +1039,8 @@ public class GameScreen implements Screen {
             gameStage.addActor(pizzaClickable);
             gameStage.addActor(unlockBakingClickable);
             gameStage.addActor(potatoClickable);
-            gameStage.addActor(cheeseClickable);
+//            gameStage.addActor(cheeseClickable);
+            gameStage.addActor(doubleMoneyClickable);
             pantryScreenFrame.setPosition(10, 10);
             XbtnClickable.setPosition(7, 88);
             lettuceClickable.setPosition(25, 66);
@@ -1045,7 +1053,8 @@ public class GameScreen implements Screen {
             extraTimeClickable.setPosition(110, 40);
             pizzaClickable.setPosition(25, 17);
             potatoClickable.setPosition(81, 17);
-            cheeseClickable.setPosition(110, 17);
+//            cheeseClickable.setPosition(110, 17);
+            doubleMoneyClickable.setPosition(110, 17);
             if (bakingUnlocked) {
                 unlockBakingClickable.setPosition(10000, -1);
             } else {
@@ -1071,7 +1080,8 @@ public class GameScreen implements Screen {
         pizzaClickable.setPosition(10000, -1);
         unlockBakingClickable.setPosition(10000, -1);
         potatoClickable.setPosition(10000, -1);
-        cheeseClickable.setPosition(10000, -1);
+//        cheeseClickable.setPosition(10000, -1);
+        doubleMoneyClickable.setPosition(10000, -1);
     }
 
     public void hideServingScreen() {
@@ -1116,6 +1126,10 @@ public class GameScreen implements Screen {
 
     public void controlBurning() {
 
+    }
+
+    public void incMoneyMult() {
+        money.addMultiplier();
     }
 
     @Override

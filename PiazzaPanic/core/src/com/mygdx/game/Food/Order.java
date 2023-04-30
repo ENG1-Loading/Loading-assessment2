@@ -17,7 +17,9 @@ public class Order {
     public Order(String name,Texture orderTexture, Recipe orderRecipe) throws IOException {
         String difficulty;
         try {
+
             configHandler = new ConfigHandler();
+
             difficulty = configHandler.getDifficulty();
         } catch (NoSuchFileException e) {
             difficulty = "Easy";

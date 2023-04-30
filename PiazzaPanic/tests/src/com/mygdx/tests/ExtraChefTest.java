@@ -1,45 +1,39 @@
 package com.mygdx.tests;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Clickables.Baking;
+import com.mygdx.game.Clickables.ExtraChef;
+import com.mygdx.game.Clickables.Utils;
 import com.mygdx.game.PiazzaPanic;
+import com.mygdx.game.Powerups.Powerup;
+import com.mygdx.game.Powerups.Powerups;
 import com.mygdx.game.Screens.GameScreen;
-
-import com.mygdx.game.Clickables.*;
-
-
-import com.mygdx.game.Cook;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.when;
 
 @RunWith(GdxTestRunner.class)
-public class BakingTest {
+public class ExtraChefTest {
     private PiazzaPanic game;
     private Utils utils;
     private GameScreen gameScreen;
-    private Baking baking;
+    private ExtraChef extraChef;
+    private Powerups powerups;
 
     @Before
     public void setUp() {
         game = Mockito.mock(PiazzaPanic.class);
         utils = new Utils();
         gameScreen = Mockito.mock(GameScreen.class);
-        baking = new Baking(game, utils, gameScreen);
+        extraChef = new ExtraChef(utils, gameScreen, powerups);
     }
 
     @Test
-    public void bakingClickableIsNotNull() {
-        ImageButton bakingClickable = baking.getBakingClickable();
-        assertNotNull(bakingClickable);
+    public void extraChefClickableIsNotNull() {
+        ImageButton extraChefClickable = extraChef.getExtraChefClickable();
+        assertNotNull(extraChefClickable);
     }
-
-
-    // Add more tests as needed for other aspects of the Baking class
 }
-

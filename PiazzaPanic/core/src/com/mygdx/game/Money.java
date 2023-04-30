@@ -11,6 +11,8 @@ public class Money {
     private PiazzaPanic game;
     private String difficulty;
 
+    private double multiplier;
+
     public Money(PiazzaPanic _game, String difficulty) {
         this.font = new BitmapFont();
         font.setColor(new Color(0.0f, 1.0f, 0.39607844f, 1.0f));
@@ -18,6 +20,7 @@ public class Money {
         this.currentMoney = 0;
         this.game = _game;
         this.difficulty = difficulty;
+        this.multiplier = 1.0;
     }
 
     public Money(PiazzaPanic _game, BitmapFont font) {
@@ -26,6 +29,7 @@ public class Money {
         font.getData().setScale(0.45f);
         this.currentMoney = 0;
         this.game = _game;
+        this.multiplier = 1.0;
     }
 
     public void addMoney(int amount) {
@@ -44,6 +48,10 @@ public class Money {
 
     public void removeMoney(int amount) {
         currentMoney -= amount;
+    }
+
+    public void addMultiplier() {
+        multiplier = multiplier + 0.5;
     }
 
     public void render() {
