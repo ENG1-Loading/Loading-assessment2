@@ -10,7 +10,7 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 
 eclipse.project.name = appName + "-tests"
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.9"
     reportsDirectory = file("testing/outputs")
 }
 test {
@@ -22,9 +22,10 @@ test {
 }
 
 jacocoTestReport {
+    dependsOn test
     reports {
-        xml.enabled true
-        xml.destination file("testing/outputs/jacocoXML")
-        html.enabled true
+        xml.enabled false
+        xml.destination file("testing/outputs/test/xml")
+        html.enabled false
     }
 }
