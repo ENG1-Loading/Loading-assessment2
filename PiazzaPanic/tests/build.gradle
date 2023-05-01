@@ -9,11 +9,22 @@ sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 eclipse.project.name = appName + "-tests"
-
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory = file("testing/outputs")
+}
 test {
     File runningDir = new File('../assets/')
     runningDir.mkdirs()
     workingDir = runningDir
     jvmArgs += "--add-opens=java.base/java.lang=ALL-UNNAMED"
     finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        xml.destination file("testing/outputs/jacocoXML")
+        html.enabled true
+    }
 }
