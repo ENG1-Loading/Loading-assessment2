@@ -1,9 +1,10 @@
-package com.mygdx.tests;
+package com.mygdx.tests.ClickableTests;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.mygdx.game.Clickables.Savegame;
 import com.mygdx.game.PiazzaPanic;
 import com.mygdx.game.Screens.GameScreen;
+import com.mygdx.tests.GdxTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

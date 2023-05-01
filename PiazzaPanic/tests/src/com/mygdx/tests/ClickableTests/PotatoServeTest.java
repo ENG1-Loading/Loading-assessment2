@@ -1,37 +1,37 @@
-package com.mygdx.tests;
+package com.mygdx.tests.ClickableTests;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.mygdx.game.Clickables.ExtraChef;
-import com.mygdx.game.Clickables.ExtratimePowerup;
+import com.mygdx.game.Clickables.Pantry;
+import com.mygdx.game.Clickables.PotatoServeClickable;
 import com.mygdx.game.Clickables.Utils;
 import com.mygdx.game.PiazzaPanic;
-import com.mygdx.game.Powerups.Powerups;
 import com.mygdx.game.Screens.GameScreen;
+import com.mygdx.tests.GdxTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertNotNull;
+
 @RunWith(GdxTestRunner.class)
-public class ExtraTimeTest {
+public class PotatoServeTest {
     private PiazzaPanic game;
     private Utils utils;
     private GameScreen gameScreen;
-    private ExtratimePowerup extratimePowerup;
-    private Powerups powerups;
+    private PotatoServeClickable potatoServeClickable;
 
     @Before
     public void setUp() {
         game = Mockito.mock(PiazzaPanic.class);
         utils = new Utils();
         gameScreen = Mockito.mock(GameScreen.class);
-        extratimePowerup = new ExtratimePowerup(utils, gameScreen, powerups);
+        potatoServeClickable = new PotatoServeClickable(game, utils,gameScreen);
     }
 
     @Test
-    public void extraTimeClickableIsNotNull() {
-        ImageButton extraTimeClickable = extratimePowerup.getExtraTimeClickable();
-        assertNotNull(extraTimeClickable);
+    public void potatoClickableIsNotNull() {
+        ImageButton potatoServeClickable1 = potatoServeClickable.getPotatoServeClickable();
+        assertNotNull(potatoServeClickable1);
     }
 }

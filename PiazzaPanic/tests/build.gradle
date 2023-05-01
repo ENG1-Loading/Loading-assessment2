@@ -1,23 +1,42 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'jacoco'
+}
+
 dependencies {
     implementation 'org.junit.jupiter:junit-jupiter:5.9.2'
     implementation 'junit:junit:4.13.2'
     implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
 }
+
 sourceCompatibility = 1.8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 eclipse.project.name = appName + "-tests"
+
 jacoco {
     toolVersion = "0.8.9"
     reportsDirectory = file("testing/outputs")
 }
+
+task extractNatives(type: Copy) {
+    from configurations.runtimeClasspath
+    into new File('build/natives')
+    include '*.dll', '*.so', '*.dylib'
+}
+
 test {
+    dependsOn extractNatives
+
     File runningDir = new File('../assets/')
     runningDir.mkdirs()
     workingDir = runningDir
     jvmArgs += "--add-opens=java.base/java.lang=ALL-UNNAMED"
+    systemProperty "java.library.path", "build/natives"
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
 

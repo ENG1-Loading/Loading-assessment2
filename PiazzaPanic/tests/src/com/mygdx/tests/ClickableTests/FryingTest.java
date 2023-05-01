@@ -1,35 +1,36 @@
-package com.mygdx.tests;
+package com.mygdx.tests.ClickableTests;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.mygdx.game.Clickables.Pantry;
-import com.mygdx.game.Clickables.PotatoClickable;
+import com.mygdx.game.Clickables.Baking;
+import com.mygdx.game.Clickables.Frying;
 import com.mygdx.game.Clickables.Utils;
 import com.mygdx.game.PiazzaPanic;
 import com.mygdx.game.Screens.GameScreen;
+import com.mygdx.tests.GdxTestRunner;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertNotNull;
-
-public class PotatoTest {
+@RunWith(GdxTestRunner.class)
+public class FryingTest {
     private PiazzaPanic game;
     private Utils utils;
     private GameScreen gameScreen;
-    private PotatoClickable potatoClickable;
+    private Frying frying;
 
     @Before
     public void setUp() {
         game = Mockito.mock(PiazzaPanic.class);
         utils = new Utils();
         gameScreen = Mockito.mock(GameScreen.class);
-        potatoClickable = new PotatoClickable( utils,gameScreen);
+        frying = new Frying(game, utils, gameScreen);
     }
 
     @Test
-    public void potatoClickableIsNotNull() {
-        ImageButton potatoClickable1 = potatoClickable.getPotatoClickable();
-        assertNotNull(potatoClickable1);
+    public void fryingClickableIsNotNull() {
+        ImageButton fryingClickable = frying.createFryingClickable();
+        assertNotNull(fryingClickable);
     }
-
 }

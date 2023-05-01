@@ -1,4 +1,4 @@
-package com.mygdx.tests;
+package com.mygdx.tests.ClickableTests;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,6 +12,7 @@ import com.mygdx.game.Food.Burger;
 import com.mygdx.game.Food.Ingredient;
 import com.mygdx.game.Food.Order;
 import com.mygdx.game.Screens.GameScreen;
+import com.mygdx.tests.GdxTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

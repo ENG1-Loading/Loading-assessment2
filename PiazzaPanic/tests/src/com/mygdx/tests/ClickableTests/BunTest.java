@@ -1,45 +1,37 @@
-package com.mygdx.tests;
+package com.mygdx.tests.ClickableTests;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Clickables.Baking;
+import com.mygdx.game.Clickables.BunClickable;
+import com.mygdx.game.Clickables.Utils;
 import com.mygdx.game.PiazzaPanic;
 import com.mygdx.game.Screens.GameScreen;
-
-import com.mygdx.game.Clickables.*;
-
-
-import com.mygdx.game.Cook;
+import com.mygdx.tests.GdxTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.when;
 
 @RunWith(GdxTestRunner.class)
-public class BakingTest {
+public class BunTest {
     private PiazzaPanic game;
     private Utils utils;
     private GameScreen gameScreen;
-    private Baking baking;
+    private BunClickable bun;
 
     @Before
     public void setUp() {
         game = Mockito.mock(PiazzaPanic.class);
         utils = new Utils();
         gameScreen = Mockito.mock(GameScreen.class);
-        baking = new Baking(game, utils, gameScreen);
+        bun = new BunClickable(utils,gameScreen);
     }
 
     @Test
-    public void bakingClickableIsNotNull() {
-        ImageButton bakingClickable = baking.getBakingClickable();
-        assertNotNull(bakingClickable);
+    public void bunClickableIsNotNull() {
+        ImageButton bunClickable = bun.getBunClickable();
+        assertNotNull(bunClickable);
     }
-
-
-    // Add more tests as needed for other aspects of the Baking class
 }
-

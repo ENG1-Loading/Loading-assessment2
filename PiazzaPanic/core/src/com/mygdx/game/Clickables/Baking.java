@@ -30,6 +30,7 @@ public class Baking {
         bakingClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Baking Clicked");
                 Array<Cook> cooks = screen.getCooks();
                 int selected = screen.getSelected();
                 screen.setSationSelected(2);

@@ -12,10 +12,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -188,7 +185,6 @@ public class GameScreen implements Screen {
     PattyClickable patty;
     Savegame save;
     PizzaClickable pizza;
-    CheeseClickable cheese;
     UnlockBaking unlock;
     PizzaServeClickable pizzaServe;
     PotatoServeClickable potatoServe;
@@ -228,6 +224,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
+
     public GameScreen(PiazzaPanic game, FitViewport port, Boolean isEndless, Boolean isLoad, String Loadfile,
             JSONObject config) throws IOException {
 
@@ -254,7 +251,6 @@ public class GameScreen implements Screen {
         this.pizza = new PizzaClickable(utils, this);
         this.potato = new PotatoClickable(utils, this);
         this.unlock = new UnlockBaking(utils, this);
-        this.cheese = new CheeseClickable(utils, this);
         this.pizzaServe = new PizzaServeClickable(game, utils, this);
         this.potatoServe = new PotatoServeClickable(game, utils, this);
         try {
@@ -401,7 +397,6 @@ public class GameScreen implements Screen {
         stationSpeedClickable = stationSpeedPowerup.getStationClickable();
         extraTimeClickable = extratimePowerup.getExtraTimeClickable();
         pizzaClickable = pizza.getPizzaClickable();
-        cheeseClickable = cheese.getCheeseClickable();
         unlockBakingClickable = unlock.getUnlockBakingButton();
         pizzaServableClickable = pizzaServe.getPizzaServeClickable();
         potatoServeClickable = potatoServe.getPotatoServeClickable();

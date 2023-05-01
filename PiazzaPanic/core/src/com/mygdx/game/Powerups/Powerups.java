@@ -137,10 +137,7 @@ public class Powerups {
         }
     }
 
-    public void setStationSpeedFree(float multiplier) {
-        allPowerups.get("FastStations").setInitialisedTime(System.currentTimeMillis());
-        allPowerups.get("FastStations").setValue(multiplier);
-    }
+
 
     /*
         * Returns the powerup
@@ -191,10 +188,7 @@ public class Powerups {
         return bought;
     }
 
-    public void buyRepFree() {
-        allPowerups.get("ExtraLife").setInitialisedTime(System.currentTimeMillis());
-        allPowerups.get("ExtraLife").setValue(1);
-    }
+
     public float getRep() {
         return allPowerups.get("ExtraLife").getValue();
     }
@@ -233,18 +227,18 @@ public class Powerups {
         }
     }
     /*
-        * Returns the powerup
+        * Resets the powerup
         * @param name the name of the powerup
-        * @return the powerup
+        * @return none
      */
     public void resetPowerup(String k) {
         allPowerups.get(k).setInitialisedTime(0);
         allPowerups.get(k).setValue(1);
     }
     /*
-        * Returns the powerup
-        * @param name the name of the powerup
-        * @return the powerup
+        * Checks the powerups
+        * @param none
+        * @return none
      */
     public void checkPowerups() {
         for (String k : allPowerups.keySet()) {

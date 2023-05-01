@@ -30,9 +30,6 @@ public class FoodMenu {
         * @param none
         * @return orderOptions the order options
      */
-    public ArrayList<Order> getOrderOptions() {
-        return orderOptions;
-    }
     /*
         * Returns a random order
         * @param none

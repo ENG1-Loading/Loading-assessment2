@@ -10,6 +10,13 @@ public class PiazzaPanic extends Game {
     public final int GAME_WIDTH = 1280;
     public final int GAME_HEIGHT = 720;
     public SpriteBatch batch;
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(SpriteBatch batch) {
+        this.batch = batch;
+    }
     // private FitViewport fit;
     /*
         * Creates the game

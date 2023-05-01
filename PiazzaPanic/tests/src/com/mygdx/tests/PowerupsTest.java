@@ -18,10 +18,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+
 @RunWith(GdxTestRunner.class)
 public class PowerupsTest {
     private PiazzaPanic game = Mockito.mock(PiazzaPanic.class);
     private Money money;
+    private GameScreen screen = Mockito.mock(GameScreen.class);
 
     @Before
     public void setUp() {
@@ -106,6 +109,45 @@ public class PowerupsTest {
         Powerups powerups = new Powerups(game, money, null, "");
         powerups.buyRep();
         assertEquals(1, powerups.getRep(), 0.01f);
+    }
+
+    @Test
+    public void testSetChefNotEnough() {
+        money.removeMoney(100000);
+        Powerups powerups = new Powerups(game, money, null, "");
+        boolean bought = powerups.setChefCount(3);
+        assertEquals(bought, false);
+    }
+
+    @Test
+    public void setSpeedFree() {
+        Powerups powerups = new Powerups(game, money, null, "");
+        powerups.setSpeedMultiplierFree(5);
+        assertEquals(5, powerups.getSpeedMultiplier(), 0.01f);
+    }
+
+    @Test
+    public void hasExtraTime() {
+        Powerups powerups = new Powerups(game, money, null, "");
+        assertEquals(powerups.hasExtraTime(), false);
+    }
+
+    @Test
+    public void resetPowerupTest() {
+        money.addMoney(10000);
+        Powerups powerups = new Powerups(game, money, null, "");
+        powerups.setSpeedMultiplier(2);
+        powerups.resetPowerup("Speed");
+        assertEquals(1, powerups.getSpeedMultiplier(), 0.01f);
+    }
+
+    @Test
+    public void testgetPowerupsActive() {
+        money.addMoney(10000);
+        Powerups powerups = new Powerups(game, money, null, "");
+        powerups.setSpeedMultiplier(2);
+        ArrayList<String> powerupsActive = powerups.getPowerupsActive();
+        assertEquals(1, powerupsActive.size());
     }
 
 
