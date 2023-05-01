@@ -125,7 +125,7 @@ public class MainMenuScreen implements Screen {
         exitBtnTex = new Texture("exitBtn.png");
         infoBtnTex = new Texture("infoBtn.png");
         endlessBtnTex = new Texture("endless.png");
-        loadfileBtnTex = new Texture("Save.png");
+        loadfileBtnTex = new Texture("Savebig.png");
         settingsBtnTex = new Texture("settings.png");
         // textures for hovered buttons
         infoBtnTexHover = new Texture("infoBtn2.png");
@@ -272,10 +272,10 @@ public class MainMenuScreen implements Screen {
         gameStage.addActor(exitBtn);
         exitBtn.setPosition((game.GAME_WIDTH / 2) - (exitBtn.getWidth() / 2), 35);
         gameStage.addActor(loadfileBtn);
-        loadfileBtn.setPosition((((game.GAME_WIDTH / 2) - (playBtn.getWidth() / 2)) + endlessBtn.getWidth() / 2) + 25,
-                125);
+        loadfileBtn.setPosition(loadfileBtn.getWidth()+20, game.GAME_HEIGHT - loadfileBtn.getHeight() - 30);
+
         gameStage.addActor(infoBtn);
-        infoBtn.setPosition(game.GAME_WIDTH - infoBtn.getWidth(), game.GAME_HEIGHT - infoBtn.getHeight());
+        infoBtn.setPosition(infoBtn.getWidth(), game.GAME_HEIGHT - infoBtn.getHeight());
         gameStage.addActor(settingsBtn);
         settingsBtn.setPosition(game.GAME_WIDTH - infoBtn.getWidth() - 70, game.GAME_HEIGHT - infoBtn.getHeight());
 
@@ -320,10 +320,11 @@ public class MainMenuScreen implements Screen {
                             int returnval = chooser.showOpenDialog(null);
                             if (returnval == JFileChooser.APPROVE_OPTION) {
                                 filepath = chooser.getSelectedFile().getAbsolutePath();
-                                fileOpening = false;
 
                             } else {
+                                filepath = null;
                             }
+                            fileOpening = false;
                         }
 
                     }

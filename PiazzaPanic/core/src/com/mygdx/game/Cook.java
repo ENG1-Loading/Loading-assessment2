@@ -54,7 +54,6 @@ public class Cook {
                 }
             }
         }
-        System.out.println(stations);
         if (canMove) {
             // method to move a cook from their current position to a station
             if (cook.getX() != locations[index][0] || cook.getY() != locations[index][1]) {

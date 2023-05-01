@@ -75,8 +75,12 @@ public class Powerups {
         } else {
             System.out.println("Not enough money for this.");
         }
-
     }
+    public void setSpeedMultiplierFree(int multiplier) {
+        allPowerups.get("Speed").setInitialisedTime(System.currentTimeMillis());
+        allPowerups.get("Speed").setValue(multiplier);
+    }
+
     /*
         * Returns the powerup
         * @param name the name of the powerup
@@ -132,6 +136,12 @@ public class Powerups {
             System.out.println("Not enough money for this.");
         }
     }
+
+    public void setStationSpeedFree(float multiplier) {
+        allPowerups.get("FastStations").setInitialisedTime(System.currentTimeMillis());
+        allPowerups.get("FastStations").setValue(multiplier);
+    }
+
     /*
         * Returns the powerup
         * @param name the name of the powerup
@@ -153,6 +163,13 @@ public class Powerups {
 
         return bought;
     }
+    public void buyExtraTimeFree() {
+        for (ArrayList<Customer> customers : ((GameScreen) screen).getCustomers()) {
+            for (Customer c : customers) {
+                c.customerOrder.setOrderTime(c.customerOrder.getOrderTime() + 10);
+            }
+        }
+    }
     public float getExtraTime() {
         return allPowerups.get("ExtraTime").getValue();
     }
@@ -173,6 +190,11 @@ public class Powerups {
         System.out.println(bought);
         return bought;
     }
+
+    public void buyRepFree() {
+        allPowerups.get("ExtraLife").setInitialisedTime(System.currentTimeMillis());
+        allPowerups.get("ExtraLife").setValue(1);
+    }
     public float getRep() {
         return allPowerups.get("ExtraLife").getValue();
     }
@@ -188,6 +210,9 @@ public class Powerups {
         }
 
         return bought;
+    }
+    public void buyDoubleMoneyFree() {
+        ((GameScreen) screen).incMoneyMult();
     }
     /*
         * Returns the powerup
@@ -229,6 +254,15 @@ public class Powerups {
                 }
             }
         }
+    }
+    public ArrayList<String> getPowerupsActive() {
+        ArrayList<String> activePowerups = new ArrayList<String>();
+        for (String k : allPowerups.keySet()) {
+            if (allPowerups.get(k).getInitialisedTime() != 0) {
+                activePowerups.add(k);
+            }
+        }
+        return activePowerups;
     }
 
 //    public void render() {

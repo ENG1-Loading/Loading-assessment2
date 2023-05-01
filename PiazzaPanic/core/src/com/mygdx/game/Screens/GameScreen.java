@@ -685,6 +685,17 @@ public class GameScreen implements Screen {
         return Rep;
     }
 
+    /*
+        * Gets the powerups
+        *
+        * @param none
+        *
+        * @return powerups the powerups
+        *
+     */
+    public Powerups getPowerups() {
+        return powerups;
+    }
 
     /*
         * Initialises the save file if supplied
@@ -694,10 +705,32 @@ public class GameScreen implements Screen {
         * @return none
      */
     public void initialiseLoad(JSONObject obj) {
-        Rep = (int) obj.get("rep");
-        gameTime = System.currentTimeMillis() + (int) obj.get("timetaken");
-        // customerCount = (int) obj.get("customersLeft");
-        money.addMoney((int) obj.get("Money"));
+        Rep = obj.optInt("rep", 3);
+        int timeTaken = obj.optInt("timetaken", 0);
+        gameTime = System.currentTimeMillis() + timeTaken;
+        // customerCount = obj.optInt("customersLeft", defaultCustomerCountValue);
+        int moneyToAdd = obj.optInt("Money", 0);
+        money.addMoney(moneyToAdd);
+        NumServed = obj.optInt("NumServed", 0);
+        if (obj.optBoolean("bakingUnlocked", false)) {
+            bakingUnlocked = true;
+        }
+        if (obj.optBoolean("pizzaAtBaking", false)) {
+            pizzaAtBaking = true;
+        }
+        if (obj.optBoolean("Speed", false)) {
+            powerups.setSpeedMultiplierFree(2);
+        }
+        if (obj.optBoolean("DoubleMoney", false)) {
+            powerups.buyDoubleMoneyFree();
+        }
+        if (obj.optBoolean("ExtraTime", false)) {
+            powerups.buyExtraTimeFree();
+        }
+        if (obj.optBoolean("ExtraChef", false)) {
+            thirdChefUnlocked = true;
+        }
+
 
     }
 
@@ -800,6 +833,9 @@ public class GameScreen implements Screen {
             }
         }
 
+        if (thirdChefUnlocked) {
+            extraChefClickable.setPosition(100000, -1);
+        }
 
         money.render();
 
@@ -932,7 +968,13 @@ public class GameScreen implements Screen {
                             long timeTaken = System.currentTimeMillis() - gameTime;
                             alienJazz.stop();
                             if (endless) {
-                                game.setScreen(new EndGameScreen(game, timeTaken, 0, true, customerCount));
+                                int tosub = 0;
+                                for (Customer c : customers.get(customerCount)) {
+                                    if (!c.selfComplete) {
+                                        tosub += 1;
+                                    }
+                                }
+                                game.setScreen(new EndGameScreen(game, timeTaken, 0, true, NumServed- tosub));
                             } else {
                                 game.setScreen(new EndGameScreen(game, timeTaken, Rep, false, 0));
                             }
@@ -1018,6 +1060,10 @@ public class GameScreen implements Screen {
             game.setScreen(new MainMenuScreen(game));
         }
 
+        if (Gdx.input.isKeyPressed(Input.Keys.L)) {
+            Rep--;
+        }
+
     }
 
     /*
@@ -1085,10 +1131,16 @@ public class GameScreen implements Screen {
                         // customer.orderComplete = true;
                         customer.orderExpired = true;
                         Rep--;
-                        if (Rep == 0) {
+                        if (Rep <= 0) {
                             long timeTaken = System.currentTimeMillis() - gameTime;
                             try {
-                                game.setScreen(new EndGameScreen(game, timeTaken, 0, true, NumServed));
+                                int tosub = 0;
+                                for (Customer c : customers.get(customerCount)) {
+                                    if (!c.selfComplete) {
+                                        tosub += 1;
+                                    }
+                                }
+                                game.setScreen(new EndGameScreen(game, timeTaken, 0, true, NumServed - tosub));
                             } catch (IOException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();

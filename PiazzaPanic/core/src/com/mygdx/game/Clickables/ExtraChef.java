@@ -18,7 +18,7 @@ public class ExtraChef {
         * @return none
      */
     public ExtraChef(Utils utils, final GameScreen screen, final Powerups powerups) {
-        extraChefClickable = utils.createImageClickable(new Texture("stopwatchplus.png"), 24, 24);
+        extraChefClickable = utils.createImageClickable(new Texture("chef-hat.png"), 20, 20);
         extraChefClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
