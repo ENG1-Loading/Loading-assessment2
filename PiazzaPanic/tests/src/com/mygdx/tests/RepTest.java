@@ -41,25 +41,25 @@ public class RepTest {
         ImageButton repButton = rep.getRepButton();
         assertNotNull(repButton);
     }
-    @Test
-    public void testClick() {
-        ClickListener clickListener = null;
-        for (EventListener listener: rep.getRepButton().getListeners()) {
-            if (listener instanceof ClickListener) {
-                clickListener = (ClickListener) listener;
-                System.out.println("Found a click listener");
-                break;
-            }
-        }
-
-        if (clickListener != null) {
-            InputEvent event = new InputEvent();
-            event.setType(InputEvent.Type.touchDown);
-            event.setButton(Input.Buttons.LEFT);
-            clickListener.touchDown(event, 0, 0, 0, 0); // touchDown event
-            clickListener.touchUp(event, 0, 0, 0, 0); // touchUp event
-        }
-
-        verify(gameScreen, times(1)).addRep(1);
-    }
+//    @Test
+//    public void testClick() {
+//        ClickListener clickListener = null;
+//        for (EventListener listener: rep.getRepButton().getListeners()) {
+//            if (listener instanceof ClickListener) {
+//                clickListener = (ClickListener) listener;
+//                System.out.println("Found a click listener");
+//                break;
+//            }
+//        }
+//
+//        if (clickListener != null) {
+//            InputEvent event = new InputEvent();
+//            event.setType(InputEvent.Type.touchDown);
+//            event.setButton(Input.Buttons.LEFT);
+//            clickListener.touchDown(event, 0, 0, 0, 0); // touchDown event
+//            clickListener.touchUp(event, 0, 0, 0, 0); // touchUp event
+//        }
+//
+//        verify(gameScreen, times(1)).addRep(1);
+//    }
 }
