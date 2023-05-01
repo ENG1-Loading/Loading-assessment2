@@ -29,7 +29,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Test
-        run: ./gradlew clean test --info
+        run: ./gradlew test --info
         working-directory: ./PiazzaPanic
       - name: Build with Gradle
         run: ./gradlew desktop:dist
