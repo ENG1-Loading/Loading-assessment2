@@ -133,6 +133,10 @@ public class EndGameScreen implements Screen {
         restartBtn.setPosition(game.GAME_WIDTH / 2 - restartBtn.getWidth() / 2,
                 game.GAME_HEIGHT / 2 - restartBtn.getHeight() / 2 - 100);
     }
+
+    public Stage getStage() {
+        return screenStage;
+    }
     /*
         * Converts a long to a human readable time format
         * @param millis the time in milliseconds
