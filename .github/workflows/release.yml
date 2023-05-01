@@ -39,13 +39,13 @@ jobs:
       - name: List files in test output directory
         if: always() && matrix.os == 'ubuntu-latest'
         run: |
-          ls -la PiazzaPanic/tests/
+          ls -la PiazzaPanic/tests/testing/outputs/test
       - name: Upload test output
         if: always() && matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: PiazzaPanic/tests/tests/build/jacoco.xml
+          path: PiazzaPanic/tests/testing/outputs/test/html
           
 
       - name: Rename jar file
