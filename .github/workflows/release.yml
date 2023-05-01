@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: PiazzaPanic/tests/tests/test-results/*.xml
+          path: PiazzaPanic/tests/tests/build/jacoco.xml
           
 
       - name: Rename jar file
