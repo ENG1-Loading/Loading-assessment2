@@ -29,20 +29,25 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Test
-        run: ./gradlew clean test --info
+        run: ./gradlew test --info
         working-directory: ./PiazzaPanic
       - name: Build with Gradle
         run: ./gradlew desktop:dist
         working-directory: ./PiazzaPanic
         env:
           JAVA_HOME: ${{ steps.setup-jdk.outputs.path }}
-
+      - name: List files in test output directory
+        if: always() && matrix.os == 'ubuntu-latest'
+        run: |
+          ls -la PiazzaPanic/tests/
       - name: Upload test output
         if: always() && matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: build/test-results/**/*.xml
+          path: PiazzaPanic/tests/tests/build/jacoco.xml
+          
+
       - name: Rename jar file
         if: matrix.os == 'ubuntu-latest'
         run: |
