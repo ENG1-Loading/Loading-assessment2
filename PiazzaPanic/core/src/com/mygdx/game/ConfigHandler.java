@@ -15,7 +15,7 @@ import static java.nio.file.Path.of;
 
 public class ConfigHandler {
     JSONObject config;
-    String configPath = Gdx.files.getLocalStoragePath() + "core\\src\\com\\mygdx\\game\\config.json";
+    String configPath = "./config.json";
     /*
         * Creates a new config handler
         *
