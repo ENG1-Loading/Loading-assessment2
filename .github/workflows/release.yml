@@ -39,7 +39,7 @@ jobs:
       - name: List files in test output directory
         if: always() && matrix.os == 'ubuntu-latest'
         run: |
-          ls -la PiazzaPanic/tests/tests/build/
+          ls -la PiazzaPanic/tests/
       - name: Upload test output
         if: always() && matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
