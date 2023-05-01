@@ -31,19 +31,19 @@ jobs:
       - name: Test
         run: ./gradlew clean test --info
         working-directory: ./PiazzaPanic
+      - name: Build with Gradle
+        run: ./gradlew desktop:dist
+        working-directory: ./PiazzaPanic
+        env:
+          JAVA_HOME: ${{ steps.setup-jdk.outputs.path }}
 
       - name: Upload test output
         if: always() && matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: PiazzaPanic/build/test-results/**/*.xml
+          path: PiazzaPanic/tests/tests/test-results/*.xml
           
-      - name: Build with Gradle
-        run: ./gradlew desktop:dist
-        working-directory: ./PiazzaPanic
-        env:
-          JAVA_HOME: ${{ steps.setup-jdk.outputs.path }}
 
       - name: Rename jar file
         if: matrix.os == 'ubuntu-latest'
