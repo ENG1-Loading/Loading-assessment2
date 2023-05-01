@@ -91,6 +91,23 @@ public class PowerupsTest {
         assertEquals(2, powerups.getStationSpeed(), 0.01f);
     }
 
+    @Test
+    public void testSetChefCount() {
+        money.addMoney(10000);
+        Powerups powerups = new Powerups(game, money, null, "");
+        assertEquals(2f, powerups.getChefCount(), 0.01f);
+        powerups.setChefCount(3);
+        assertEquals(3f, powerups.getChefCount(), 0.01f);
+    }
+
+    @Test
+    public void testBuyRep() {
+        money.addMoney(10000);
+        Powerups powerups = new Powerups(game, money, null, "");
+        powerups.buyRep();
+        assertEquals(1, powerups.getRep(), 0.01f);
+    }
+
 
 
 }

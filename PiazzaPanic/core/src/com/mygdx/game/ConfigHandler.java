@@ -56,6 +56,20 @@ public class ConfigHandler {
         config = new JSONObject(content);
     }
 
+    public ConfigHandler(JSONObject config) {
+        this.config = config;
+    }
+
+    /*
+        * Sets the config (used for testing)
+        *
+        * @param config the config
+        * @return none
+     */
+    public void setConfig(JSONObject config) {
+        this.config = config;
+    }
+
     /*
         * Gets the config
         *

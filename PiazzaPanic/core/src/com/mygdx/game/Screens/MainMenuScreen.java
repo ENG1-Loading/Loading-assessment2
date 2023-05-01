@@ -60,7 +60,7 @@ public class MainMenuScreen implements Screen {
 
     TextureRegion loadfileBtnRegion;
     TextureRegionDrawable loadfileBtnDrawable;
-    ImageButton loadfileBtn;
+    public ImageButton loadfileBtn;
 
     TextureRegion settingsBtnRegion;
     TextureRegionDrawable settingsBtnDrawable;
@@ -99,7 +99,17 @@ public class MainMenuScreen implements Screen {
         this.configHandler = new ConfigHandler();
         this.config = configHandler.getConfig();
         this.game = game;
-
+    }
+    /*
+        * Constructor for the main menu screen (used for testing)
+        * @param game the game object
+        * @param configHandler the config handler object
+        * @return none
+     */
+    public MainMenuScreen(PiazzaPanic game, ConfigHandler configHandler) throws IOException {
+        this.configHandler = configHandler;
+        this.config = configHandler.getConfig();
+        this.game = game;
     }
     /*
         * Initializes the main menu screen graphics
@@ -362,6 +372,14 @@ public class MainMenuScreen implements Screen {
         // }
         Gdx.input.setInputProcessor(gameStage);
         gameStage.draw();
+    }
+    /*
+        * Gets the stage
+        * @param none
+        * @return gameStage - the stage
+     */
+    public Stage getStage() {
+        return gameStage;
     }
     /*
         * Resizes the main menu screen graphics

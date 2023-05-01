@@ -36,18 +36,13 @@ public class SettingsScreen implements Screen {
     Texture uncheckedBox = new Texture("unchecked_box.png");
     Texture backBtnTex = new Texture("backBtn.png");
     Texture backBtnTexHover = new Texture("backBtn2.png");
-    Texture diffBtnTex;
-    Texture diffBtnTexHover;
 
-
-    Texture hardBtnTexHover;
     FitViewport view;
     TextureRegion checkedBoxRegion;
     TextureRegion uncheckedBoxRegion;
     TextureRegionDrawable checkedBoxDrawable;
     TextureRegionDrawable uncheckedBoxDrawable;
     ImageButton checkedBoxBtn;
-    ImageButton uncheckedBoxBtn;
     Boolean checked = true;
     ConfigHandler configHandler;
     TextureRegion backBtnRegion;
@@ -70,7 +65,7 @@ public class SettingsScreen implements Screen {
         this.config = configHandler.getConfig();
     }
 
-    private Label createLabel(String text, float x, float y, BitmapFont font) {
+    public Label createLabel(String text, float x, float y, BitmapFont font) {
         LabelStyle labelStyle = new LabelStyle();
         labelStyle.font = font;
         labelStyle.fontColor = com.badlogic.gdx.graphics.Color.BLACK;
@@ -227,6 +222,17 @@ public class SettingsScreen implements Screen {
         gameStage.addActor(difficultyButtonLabel);
 
     }
+    /*
+        * Returns the game stage
+        *
+        * @param none
+        *
+        * @return gameStage
+     */
+    public Stage getGameStage() {
+        return gameStage;
+    }
+
     /*
         * Render loop for the screen
         *

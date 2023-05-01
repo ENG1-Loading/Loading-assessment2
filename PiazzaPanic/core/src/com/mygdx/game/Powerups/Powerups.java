@@ -3,7 +3,6 @@ package com.mygdx.game.Powerups;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.Interpolation;
 import com.mygdx.game.Customer;
 import com.mygdx.game.Money;
 import com.mygdx.game.PiazzaPanic;
@@ -95,6 +94,14 @@ public class Powerups {
         }
     }
     /*
+        * Returns the chef count
+        * @param none
+        * @return the number of chefs
+     */
+    public float getChefCount() {
+        return allPowerups.get("ExtraChef").getValue();
+    }
+    /*
         * Returns the powerup
         * @param name the name of the powerup
         * @return the powerup
@@ -146,6 +153,9 @@ public class Powerups {
 
         return bought;
     }
+    public float getExtraTime() {
+        return allPowerups.get("ExtraTime").getValue();
+    }
     /*
         * Returns the powerup
         * @param name the name of the powerup
@@ -162,6 +172,9 @@ public class Powerups {
         System.out.println("Returning ");
         System.out.println(bought);
         return bought;
+    }
+    public float getRep() {
+        return allPowerups.get("ExtraLife").getValue();
     }
     /*
         * Returns the powerup
