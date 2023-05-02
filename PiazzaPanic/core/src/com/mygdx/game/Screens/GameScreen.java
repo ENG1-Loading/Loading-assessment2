@@ -224,9 +224,8 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-
     public GameScreen(PiazzaPanic game, FitViewport port, Boolean isEndless, Boolean isLoad, String Loadfile,
-            JSONObject config) throws IOException {
+            JSONObject config, OrthogonalTiledMapRenderer rendererOptional) throws IOException {
 
         // initialise the game
         this.game = game;
@@ -274,7 +273,12 @@ public class GameScreen implements Screen {
         // load the map and camera
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("KitchenMap.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
+        if (rendererOptional == null) {
+            renderer = new OrthogonalTiledMapRenderer(map);
+        } else {
+            renderer = rendererOptional;
+            renderer.setMap(map);
+        }
         gameCam = new OrthographicCamera();
         view.setCamera(gameCam);
         view.setWorldSize(192, 144);
@@ -444,6 +448,11 @@ public class GameScreen implements Screen {
     public void setSationSelected(int value) {
         stationSelected.set(selected, value);
     }
+
+    public ArrayList<Integer> getStationSelected() {
+        return stationSelected;
+    }
+
     /*
         * Gets current cook selected
         *
@@ -458,6 +467,16 @@ public class GameScreen implements Screen {
        *
        * @return cooks
      */
+
+    /*
+        * Gets the stage
+        *
+        * @return gameStage the stage
+     */
+    public Stage getGameStage() {
+        return gameStage;
+    }
+
     public Array<Cook> getCooks() {
         return cooks;
     }
@@ -481,6 +500,10 @@ public class GameScreen implements Screen {
         int freeStation = helpers.findFreeStation(stationSelected);
         isInitialMove = true;
         stationSelected.set(2, freeStation);
+    }
+
+    public int getCookCount() {
+        return cookCount;
     }
 
 //    public int findFreeStation() {
@@ -603,8 +626,14 @@ public class GameScreen implements Screen {
     public void setShowPantryScreen(Boolean show) {
         showPantryScreen = show;
     }
-
-
+    /*
+        * Gets whether pantry screen is shown
+        *
+        * @return showPantryScreen
+     */
+    public boolean getShowPantryScreen() {
+        return showPantryScreen;
+    }
     /*
         * Shows/hides the serving screen
         *
@@ -614,6 +643,14 @@ public class GameScreen implements Screen {
      */
     public void setShowServingScreen(Boolean value) {
         showServingScreen = value;
+    }
+    /*
+        * Gets whether serving screen is shown
+        *
+        * @return showServingScreen
+     */
+    public boolean getShowServingScreen() {
+        return showServingScreen;
     }
 
     /*
@@ -710,9 +747,7 @@ public class GameScreen implements Screen {
         if (obj.optBoolean("bakingUnlocked", false)) {
             bakingUnlocked = true;
         }
-        if (obj.optBoolean("pizzaAtBaking", false)) {
-            pizzaAtBaking = true;
-        }
+
         if (obj.optBoolean("Speed", false)) {
             powerups.setSpeedMultiplierFree(2);
         }
@@ -751,7 +786,7 @@ public class GameScreen implements Screen {
         *
         * @return clickable the clickable image
      */
-    private ImageButton createImageClickable(Texture texture, float width, float height) {
+    public ImageButton createImageClickable(Texture texture, float width, float height) {
         TextureRegion region = new TextureRegion(texture);
         ImageButton clickable = new ImageButton(new TextureRegionDrawable(region));
         clickable.setSize(width, height);
@@ -915,7 +950,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void customerOperations() throws IOException {
+    public void customerOperations() throws IOException {
         // Check if all customers have been served
         boolean allComplete = false;
         for (Customer c : customers.get(customerCount)) {
@@ -926,7 +961,7 @@ public class GameScreen implements Screen {
                 allComplete = true;
             }
         }
-
+        System.out.println(allComplete);
         // move the customers to the counter
         for (int i = 0; i < customers.get(customerCount).size(); i++) {
             if (!customers.get(customerCount).get(i).atCounter) {
@@ -1031,7 +1066,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void processInput() throws IOException {
+    public void processInput() throws IOException {
         // number keys are used to select which cook is being controlled currently
         if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)) {
             selected = 0;
@@ -1055,9 +1090,6 @@ public class GameScreen implements Screen {
             game.setScreen(new MainMenuScreen(game));
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.L)) {
-            Rep--;
-        }
 
     }
 
@@ -1068,7 +1100,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void updateBatch() {
+    public void updateBatch() {
         // this section assigns each cook a sprite from the list idles
         // you could potentially update this to allow for animations for the cooks when
         // they move
@@ -1095,7 +1127,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void showOrders(float dt) {
+    public void showOrders(float dt) {
         // displays the orders at the top of the screen
         int x = 1;
         int y = 112;
@@ -1171,7 +1203,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void showCookStack() {
+    public void showCookStack() {
         // display the stack of ingredients being held by the current cook
         float x = 164;
         float y = 32;
@@ -1208,7 +1240,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void showServingScreen() {
+    public void showServingScreen() {
         if (showServingScreen) {
             gameStage.addActor(servingScreenFrame);
             gameStage.addActor(XbtnClickable);
@@ -1235,7 +1267,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void showPantryScreen() {
+    public void showPantryScreen() {
         if (showPantryScreen) {
             gameStage.addActor(pantryScreenFrame);
             gameStage.addActor(XbtnClickable);
@@ -1283,7 +1315,7 @@ public class GameScreen implements Screen {
         *
         * @return none
      */
-    private void hidePantryScreen() {
+    public void hidePantryScreen() {
         // moves pantry screen offscreen
         pantryScreenFrame.setPosition(10000, -1);
         XbtnClickable.setPosition(10000, -1);
@@ -1302,6 +1334,16 @@ public class GameScreen implements Screen {
         doubleMoneyClickable.setPosition(10000, -1);
     }
     /*
+        * Gets the clickable for the potato
+        *
+        * @param none
+        *
+        * @return potatoClickable - the clickable for the potato
+     */
+    public ImageButton getPotatoClickable() {
+        return potatoClickable;
+    }
+    /*
         * Hides the serving screen
         *
         * @param none
@@ -1316,6 +1358,16 @@ public class GameScreen implements Screen {
         saladClickable.setPosition(10000, -1);
         pizzaServableClickable.setPosition(100000,-1);
         potatoServeClickable.setPosition(100000, -1);
+    }
+    /*
+        * Gets the clickable for the pizza powerup
+        *
+        * @param none
+        *
+        * @return pizzaServableClickable - the clickable for the pizza powerup
+     */
+    public ImageButton getPizzaServableClickable() {
+        return pizzaServableClickable;
     }
 
     /*
@@ -1343,6 +1395,10 @@ public class GameScreen implements Screen {
         bar.setY(y);
         gameStage.addActor(bar);
         bars.put(bar, selectedCook);
+    }
+
+    public HashMap<ProgressBar, Cook> getBars() {
+        return bars;
     }
 
     /*

@@ -166,7 +166,7 @@ public class EndGameScreen implements Screen {
 
         if (restartBtn.isPressed()) {
             try {
-                game.setScreen(new GameScreen(game, view, false, false, "", this.config));
+                game.setScreen(new GameScreen(game, view, false, false, "", this.config, null));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

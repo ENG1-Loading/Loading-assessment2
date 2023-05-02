@@ -73,6 +73,10 @@ public class Money {
     public void addMultiplier() {
         multiplier = multiplier + 0.5;
     }
+
+    public double getMultiplier() {
+        return  multiplier;
+    }
     /*
         * Render method for the money class
         *

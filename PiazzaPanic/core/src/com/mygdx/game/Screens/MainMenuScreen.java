@@ -245,6 +245,8 @@ public class MainMenuScreen implements Screen {
         });
 
     }
+
+
     /*
         * Renders the main menu screen graphics
         * @param float delta
@@ -281,7 +283,7 @@ public class MainMenuScreen implements Screen {
 
         if (playBtn.isPressed()) {
             try {
-                game.setScreen(new GameScreen(game, view, false, false, "", this.config));
+                game.setScreen(new GameScreen(game, view, false, false, "", this.config, null));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -297,7 +299,7 @@ public class MainMenuScreen implements Screen {
         }
         if (endlessBtn.isPressed()) {
             try {
-                game.setScreen(new GameScreen(game, view, true, false, "", this.config));
+                game.setScreen(new GameScreen(game, view, true, false, "", this.config, null));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -335,7 +337,7 @@ public class MainMenuScreen implements Screen {
         }
         if (!Objects.equals(filepath, "") && filepath != null) {
             try {
-                game.setScreen(new GameScreen(game, view, false, true, filepath, this.config));
+                game.setScreen(new GameScreen(game, view, false, true, filepath, this.config, null));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -374,14 +376,7 @@ public class MainMenuScreen implements Screen {
         Gdx.input.setInputProcessor(gameStage);
         gameStage.draw();
     }
-    /*
-        * Gets the stage
-        * @param none
-        * @return gameStage - the stage
-     */
-    public Stage getStage() {
-        return gameStage;
-    }
+
     /*
         * Resizes the main menu screen graphics
         * @param width - width of the screen

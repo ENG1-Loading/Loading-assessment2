@@ -162,6 +162,10 @@ public class CreditsScreen implements Screen {
     public void resize(int width, int height) {
         gameStage.getViewport().update(width, height);
     }
+
+    public Stage getStage() {
+        return gameStage;
+    }
     /*
         * Pauses the credits screen
         *

@@ -1,10 +1,11 @@
-package com.mygdx.tests;
+package com.mygdx.tests.ScreenTests;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.mygdx.game.ConfigHandler;
 import com.mygdx.game.PiazzaPanic;
-import com.mygdx.game.Screens.EndGameScreen;
 import com.mygdx.game.Screens.MainMenuScreen;
+import com.mygdx.game.Screens.SettingsScreen;
+import com.mygdx.tests.GdxTestRunner;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,10 +17,10 @@ import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
 
 @RunWith(GdxTestRunner.class)
-public class EndgameTests {
+public class MainMenuTests {
     private PiazzaPanic mockgame;
     private ConfigHandler configHandler;
-    private EndGameScreen endGameScreen;
+    private MainMenuScreen mainMenuScreen;
     private BitmapFont font;
     @Before
     public void setUp() throws IOException {
@@ -33,16 +34,19 @@ public class EndgameTests {
         mockgame.batch = mock(com.badlogic.gdx.graphics.g2d.SpriteBatch.class);
         configHandler = new ConfigHandler(config);
 
-        endGameScreen = new EndGameScreen(mockgame, 10, 1, false, 2);
+        mainMenuScreen = new MainMenuScreen(mockgame, configHandler);
         font = new BitmapFont();
     }
 
     @Test
     public void testStage() {
         // Get a random actor from the stage
-        endGameScreen.show();
-        System.out.println(endGameScreen.getStage().getActors().size);
-        assertEquals(endGameScreen.getStage().getActors().size, 2);
-
+        mainMenuScreen.show();
+        assertEquals(mainMenuScreen.loadfileBtn.getListeners().size, 2);
     }
+
+
+
+
+
 }

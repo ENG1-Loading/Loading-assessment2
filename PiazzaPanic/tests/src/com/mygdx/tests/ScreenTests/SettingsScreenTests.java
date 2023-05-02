@@ -1,4 +1,4 @@
-package com.mygdx.tests;
+package com.mygdx.tests.ScreenTests;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Json;
 import com.mygdx.game.ConfigHandler;
 import com.mygdx.game.PiazzaPanic;
 import com.mygdx.game.Screens.SettingsScreen;
+import com.mygdx.tests.GdxTestRunner;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +34,7 @@ public class SettingsScreenTests {
         config.put("muteMusic", false);
         config.put("customersToServe", 5);
         mockgame.batch = mock(com.badlogic.gdx.graphics.g2d.SpriteBatch.class);
+
         configHandler = new ConfigHandler(config);
 
         settingsScreen = new SettingsScreen(mockgame, configHandler);
