@@ -1,14 +1,12 @@
 package com.mygdx.tests.ClickableTests;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Clickables.Baking;
+import com.mygdx.game.Food.Ingredient;
 import com.mygdx.game.PiazzaPanic;
 import com.mygdx.game.Screens.GameScreen;
 
@@ -22,10 +20,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import java.util.Stack;
 
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.*;
 
 
 @RunWith(GdxTestRunner.class)
@@ -43,23 +41,6 @@ public class BakingTest {
         baking = new Baking(game, utils, gameScreen);
     }
 
-    private void simulateClick2(ImageButton button) {
-        ClickListener clickListener = null;
-        for (EventListener listener: button.getListeners()) {
-            if (listener instanceof ClickListener) {
-                clickListener = (ClickListener) listener;
-                break;
-            }
-        }
-        if (clickListener == null) {
-            throw new RuntimeException("No click listener found");
-        }
-
-        InputEvent event = mock(InputEvent.class);
-        Mockito.when(event.getListenerActor()).thenReturn(button);
-        when(event.getTarget()).thenReturn(button);
-        clickListener.clicked(event, 0, 0);
-    }
     public void simulateClick(ImageButton imageButton) {
         InputEvent inputEvent = new InputEvent();
         inputEvent.setType(InputEvent.Type.touchDown);
@@ -72,6 +53,49 @@ public class BakingTest {
     public void bakingClickableIsNotNull() {
         ImageButton bakingClickable = baking.getBakingClickable();
         assertNotNull(bakingClickable);
+    }
+
+    @Test
+    public void testClickPizza() {
+        Array<Cook> cooks = new Array<Cook>();
+        Cook cook = new Cook(new Actor());
+        cooks.add(cook);
+        when(gameScreen.getCooks()).thenReturn(cooks);
+        when(gameScreen.getSelected()).thenReturn(0);
+        when(gameScreen.getPizzaAtBaking()).thenReturn(true);
+        gameScreen.getCooks().get(0).CookBody.setX(64);
+        gameScreen.getCooks().get(0).CookBody.setY(64);
+        Ingredient potato = new Ingredient("potato", null, null, null);
+        potato.prepare();
+        Stack<Ingredient> stack = new Stack<>();
+        stack.push(potato);
+        gameScreen.getCooks().get(0).CookStack = stack;
+
+        when(gameScreen.bakingUnlocked()).thenReturn(true);
+        baking.onBakingButtonClicked(gameScreen);
+        verify(gameScreen, times(1)).setPizzaAtBaking(false);
+
+    }
+
+    @Test
+    public void testClickPotato() {
+        Array<Cook> cooks = new Array<Cook>();
+        Cook cook = new Cook(new Actor());
+        cooks.add(cook);
+        when(gameScreen.getCooks()).thenReturn(cooks);
+        when(gameScreen.getSelected()).thenReturn(0);
+        when(gameScreen.getAtPotatoBaking()).thenReturn(true);
+        gameScreen.getCooks().get(0).CookBody.setX(64);
+        gameScreen.getCooks().get(0).CookBody.setY(64);
+        Ingredient potato = new Ingredient("potato", null, null, null);
+        potato.prepare();
+        Stack<Ingredient> stack = new Stack<>();
+        stack.push(potato);
+        gameScreen.getCooks().get(0).CookStack = stack;
+
+        when(gameScreen.bakingUnlocked()).thenReturn(true);
+        baking.onBakingButtonClicked(gameScreen);
+        verify(gameScreen, times(1)).setAtPotatoBaking(false);
     }
 
 

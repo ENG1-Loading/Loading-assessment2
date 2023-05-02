@@ -26,35 +26,39 @@ public class Cutting {
         cuttingClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                screen.setSationSelected(4);
-                Array<Cook> cooks = screen.getCooks();
-                int selected = screen.getSelected();
-                if ((Math.abs(cooks.get(selected).CookBody.getY() - 28f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 48f) < 2)) {
-                    // Can only prep if the cook is not busy
-                    if (!(cooks.get(selected).isBusy)) {
-                        // used to limit to preping only one ingredient per press
-                        boolean ingredientDone = false;
-                        // preps the first vegetable in the current cook's stack after pressing the station again
-                        // while busy creates a progress bar to indicate when the cook can move again
-                        Ingredient selectedIngredient = null;
-                        for (Ingredient ingredient : cooks.get(selected).CookStack) {
-                            if ((ingredient.name == "lettuce") && (!ingredient.getState()) && (!ingredientDone)) {
-                                selectedIngredient = ingredient;
-                            } else if ((ingredient.name == "tomato") && (!ingredient.getState()) && (!ingredientDone)) {
-                                selectedIngredient = ingredient;
-                            }
-                        }
-                        if (!(selectedIngredient == null)) {
-                            cooks.get(selected).isBusy = true;
-                            screen.createProgressBar(40, 50, cooks.get(selected));
-                            selectedIngredient.prepare();
-                            selectedIngredient.updateCurrentTexture();
-                            ingredientDone = true;
-                        }
-                    }
-                }
+                onClicked(screen);
             }
         });
+    }
+
+    public void onClicked(GameScreen screen) {
+        screen.setSationSelected(4);
+        Array<Cook> cooks = screen.getCooks();
+        int selected = screen.getSelected();
+        if ((Math.abs(cooks.get(selected).CookBody.getY() - 28f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 48f) < 2)) {
+            // Can only prep if the cook is not busy
+            if (!(cooks.get(selected).isBusy)) {
+                // used to limit to preping only one ingredient per press
+                boolean ingredientDone = false;
+                // preps the first vegetable in the current cook's stack after pressing the station again
+                // while busy creates a progress bar to indicate when the cook can move again
+                Ingredient selectedIngredient = null;
+                for (Ingredient ingredient : cooks.get(selected).CookStack) {
+                    if ((ingredient.name == "lettuce") && (!ingredient.getState()) && (!ingredientDone)) {
+                        selectedIngredient = ingredient;
+                    } else if ((ingredient.name == "tomato") && (!ingredient.getState()) && (!ingredientDone)) {
+                        selectedIngredient = ingredient;
+                    }
+                }
+                if (!(selectedIngredient == null)) {
+                    cooks.get(selected).isBusy = true;
+                    screen.createProgressBar(40, 50, cooks.get(selected));
+                    selectedIngredient.prepare();
+                    selectedIngredient.updateCurrentTexture();
+                    ingredientDone = true;
+                }
+            }
+        }
     }
     /*
         * Getter for the cutting station

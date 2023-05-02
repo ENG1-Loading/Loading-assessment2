@@ -1,6 +1,7 @@
 package com.mygdx.tests.ClickableTests;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.utils.Array;
@@ -53,6 +54,35 @@ public class BurgerTest {
     public void bunClickableIsNotNull() {
         ImageButton burgerClickable = burger.getBurgerClickable();
         assertNotNull(burgerClickable);
+    }
+
+    @Test
+    public void testClick() throws IOException {
+        Array<Cook> cooks = new Array<Cook>();
+        Cook cook = new Cook(new Actor());
+        cook.CookBody.setY(32f);
+        cook.CookBody.setX(0f);
+        Ingredient bun = new Ingredient("buns", null, null, null);
+        bun.prepare();
+        cook.CookStack.push(bun);
+        Ingredient patty = new Ingredient("patty", null, null, null);
+        patty.prepare();
+        cook.CookStack.push(patty);
+        Ingredient lettuce = new Ingredient("lettuce", null, null, null);
+        lettuce.prepare();
+        cook.CookStack.push(lettuce);
+        cooks.add(cook);
+        Customer customer = new Customer(new Actor(), false);
+        customer.customerOrder = new Order("burger", null, new Burger());
+        customer.selfComplete = false;
+        ArrayList<Customer> customerList = new ArrayList<>();
+        customerList.add(customer);
+        ArrayList<ArrayList<Customer>> customers = new ArrayList<>();
+        customers.add(customerList);
+        when(gameScreen.getCustomers()).thenReturn(customers);
+        when(gameScreen.getCooks()).thenReturn(cooks);
+        burger.onClick(gameScreen);
+        assert cook.CookStack.size() == 0;
     }
 
 //    @Test

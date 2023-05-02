@@ -24,14 +24,18 @@ public class PattyClickable {
             @Override
 
             public void clicked(InputEvent event, float x, float y) {
-                Array<Cook> cooks = screen.getCooks();
-                int selected = screen.getSelected();
-                if (cooks.get(selected).CookStack.size() < 5) {
-                    cooks.get(selected).CookStack.push(new Ingredient("patty", new Texture("rawPatty.png"), new Texture("prepdPatty.png"), new Texture("burntPatty.png")));
-                }
+                onClick(screen);
             }
         });
 
+    }
+
+    public void onClick(GameScreen screen) {
+        Array<Cook> cooks = screen.getCooks();
+        int selected = screen.getSelected();
+        if (cooks.get(selected).CookStack.size() < 5) {
+            cooks.get(selected).CookStack.push(new Ingredient("patty", new Texture("rawPatty.png"), new Texture("prepdPatty.png"), new Texture("burntPatty.png")));
+        }
     }
     /*
         * Getter for the patty station

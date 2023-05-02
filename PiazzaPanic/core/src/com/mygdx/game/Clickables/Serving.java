@@ -25,16 +25,20 @@ public class Serving {
         servingClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                screen.setSationSelected(5);
-                Array<Cook> cooks = screen.getCooks();
-                int selected = screen.getSelected();
-
-                if ((Math.abs(cooks.get(selected).CookBody.getY() - 48f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 80f) < 2)) {
-                    screen.setShowServingScreen(true);
-                    cooks.get(selected).isBusy = true;
-                }
+                onClick(screen);
             }
         });
+    }
+
+    public void onClick(GameScreen screen) {
+        screen.setSationSelected(5);
+        Array<Cook> cooks = screen.getCooks();
+        int selected = screen.getSelected();
+
+        if ((Math.abs(cooks.get(selected).CookBody.getY() - 48f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 80f) < 2)) {
+            screen.setShowServingScreen(true);
+            cooks.get(selected).isBusy = true;
+        }
     }
     /*
         * Getter for the serving station

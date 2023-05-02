@@ -28,28 +28,32 @@ public class PotatoServeClickable {
         potatoServeClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Array<Cook> cooks = screen.getCooks();
-                int selected = screen.getSelected();
-                ArrayList<ArrayList<Customer>> customers = screen.getCustomers();
-                int customerCount = screen.getCustomerCount();
-                Potato recipe = new Potato();
-                Ingredient potato = new Ingredient("potato", null, null, null);
-                potato.prepare();
-                if (recipe.has(cooks.get(selected).CookStack)) {
-                    for (int i=0; i<customers.get(customerCount).size();i++) {
-                        if (!customers.get(customerCount).get(i).selfComplete == true) {
-                            cooks.get(selected).CookStack.remove(potato);
-                            customers.get(customerCount).get(i).selfComplete = true;
-                            screen.getMoney().addMoney(100);
-                            screen.hideServingScreen();
-                            cooks.get(selected).isBusy = false;
-                            return;
-                        }
-                    }
-                } else {
-                }
+                onClick(screen);
             }
         });
+    }
+
+    public void onClick(GameScreen screen) {
+        Array<Cook> cooks = screen.getCooks();
+        int selected = screen.getSelected();
+        ArrayList<ArrayList<Customer>> customers = screen.getCustomers();
+        int customerCount = screen.getCustomerCount();
+        Potato recipe = new Potato();
+        Ingredient potato = new Ingredient("potato", null, null, null);
+        potato.prepare();
+        if (recipe.has(cooks.get(selected).CookStack)) {
+            for (int i=0; i<customers.get(customerCount).size();i++) {
+                if (!customers.get(customerCount).get(i).selfComplete == true) {
+                    cooks.get(selected).CookStack.remove(potato);
+                    customers.get(customerCount).get(i).selfComplete = true;
+                    screen.getMoney().addMoney(100);
+                    screen.hideServingScreen();
+                    cooks.get(selected).isBusy = false;
+                    return;
+                }
+            }
+        } else {
+        }
     }
     /*
         * Getter for the potato serve clickable

@@ -27,18 +27,21 @@ public class Bin {
         binClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Array<Cook> cooks = screen.getCooks();
-                int selected = screen.getSelected();
-                //stationSelected.set(selected, 3);
-                screen.setSationSelected(3);
-                // if statement that checks if the current cook is at the bin
-                if ((Math.abs(cooks.get(selected).CookBody.getY() - 32f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 0f) < 2)) {
-                    if (cooks.get(selected).CookStack.size() > 0) {
-                        cooks.get(selected).CookStack.pop();
-                    }
-                }
+                onClick(screen);
             }
         });
+    }
+
+    public void onClick(GameScreen screen) {
+        Array<Cook> cooks = screen.getCooks();
+        int selected = screen.getSelected();
+        screen.setSationSelected(3);
+        // if statement that checks if the current cook is at the bin
+        if ((Math.abs(cooks.get(selected).CookBody.getY() - 32f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 0f) < 2)) {
+            if (cooks.get(selected).CookStack.size() > 0) {
+                cooks.get(selected).CookStack.pop();
+            }
+        }
     }
     /*
         * Getter for the bin station

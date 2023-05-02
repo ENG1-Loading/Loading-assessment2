@@ -9,6 +9,9 @@ import com.mygdx.game.Screens.GameScreen;
 
 public class RepPowerup {
     ImageButton repButton;
+
+
+
     /*
         * Constructor for the rep powerup
         * @param utils the utils object
@@ -22,15 +25,20 @@ public class RepPowerup {
         repButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("buying rep");
-                boolean repbought = powerups.buyRep();
-                if (repbought) {
-                    screen.addRep(1);
-                }
+                onRepButtonClicked(powerups, screen);
             }
         });
 
 
+
+    }
+
+    public void onRepButtonClicked(Powerups powerups, GameScreen gameScreen) {
+        System.out.println("buying rep");
+        boolean repbought = powerups.buyRep();
+        if (repbought) {
+            gameScreen.addRep(1);
+        }
     }
     /*
         * Getter for the rep powerup

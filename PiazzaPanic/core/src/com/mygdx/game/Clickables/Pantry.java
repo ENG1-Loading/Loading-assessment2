@@ -26,16 +26,20 @@ public class Pantry {
         pantryClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Array<Cook> cooks = screen.getCooks();
-                screen.setSationSelected(0);
-                int selected = screen.getSelected();
-                if ((Math.abs(cooks.get(selected).CookBody.getY() - 64f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 0f) < 2)) {
-                    screen.setShowPantryScreen(true);
-                    cooks.get(selected).isBusy = true;
-                }
+                onClick(screen);
             }
         });
 
+    }
+
+    public void onClick(GameScreen screen) {
+        Array<Cook> cooks = screen.getCooks();
+        screen.setSationSelected(0);
+        int selected = screen.getSelected();
+        if ((Math.abs(cooks.get(selected).CookBody.getY() - 64f) < 2) && (Math.abs(cooks.get(selected).CookBody.getX() - 0f) < 2)) {
+            screen.setShowPantryScreen(true);
+            cooks.get(selected).isBusy = true;
+        }
     }
     /*
         * Getter for the pantry

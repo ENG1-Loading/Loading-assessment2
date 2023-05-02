@@ -28,18 +28,21 @@ public class PotatoClickable {
         potatoClickable.addListener(new ClickListener() {
            @Override
            public void clicked(InputEvent event, float x, float y) {
-               if (screen.bakingUnlocked()) {
-                   Array<Cook> cooks = screen.getCooks();
-                   int selected = screen.getSelected();
-                   if (cooks.get(selected).CookStack.size() < 5) {
-                       cooks.get(selected).CookStack.push(new Ingredient("potato", new Texture("potato.png"), new Texture("potatoCooked.png"), null));
-
-                   }
-               }
+               onClick(screen);
 
            }
         });
 
+    }
+    public void onClick(GameScreen screen) {
+        if (screen.bakingUnlocked()) {
+            Array<Cook> cooks = screen.getCooks();
+            int selected = screen.getSelected();
+            if (cooks.get(selected).CookStack.size() < 5) {
+                cooks.get(selected).CookStack.push(new Ingredient("potato", new Texture("potato.png"), new Texture("potatoCooked.png"), null));
+
+            }
+        }
     }
     /*
         * Getter for the potato station

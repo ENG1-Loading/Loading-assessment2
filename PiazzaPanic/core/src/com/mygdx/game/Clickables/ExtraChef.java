@@ -22,13 +22,20 @@ public class ExtraChef {
         extraChefClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                boolean bought = powerups.setChefCount(3);
-                if (bought) {
-                    screen.setChef(3);
-                }
+                onExtraChefButtonClicked(powerups, screen);
             }
         });
     }
+
+    public void onExtraChefButtonClicked(Powerups powerups, GameScreen gameScreen) {
+        System.out.println("buying extra chef");
+        boolean bought = powerups.setChefCount(3);
+        if (bought) {
+            gameScreen.setChef(3);
+        }
+    }
+
+
     /*
         * Getter for the extra chef powerup
         *

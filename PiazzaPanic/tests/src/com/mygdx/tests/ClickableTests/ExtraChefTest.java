@@ -15,6 +15,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(GdxTestRunner.class)
 public class ExtraChefTest {
@@ -29,6 +31,7 @@ public class ExtraChefTest {
         game = Mockito.mock(PiazzaPanic.class);
         utils = new Utils();
         gameScreen = Mockito.mock(GameScreen.class);
+        powerups = Mockito.mock(Powerups.class);
         extraChef = new ExtraChef(utils, gameScreen, powerups);
     }
 
@@ -37,4 +40,14 @@ public class ExtraChefTest {
         ImageButton extraChefClickable = extraChef.getExtraChefClickable();
         assertNotNull(extraChefClickable);
     }
+
+    @Test
+    public void extraChefPowerupIsNotNull() {
+        when(powerups.setChefCount(3)).thenReturn(true);
+        extraChef.onExtraChefButtonClicked(powerups, gameScreen);
+        System.out.println(gameScreen.getCookCount());
+        verify(gameScreen).setChef(3);
+    }
+
+
 }

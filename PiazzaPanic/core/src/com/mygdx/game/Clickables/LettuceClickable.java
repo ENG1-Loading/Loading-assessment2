@@ -26,13 +26,17 @@ public class LettuceClickable {
         lettuceClickable.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Array<Cook> cooks = screen.getCooks();
-                int selected = screen.getSelected();
-                if (cooks.get(selected).CookStack.size() < 5) {
-                    cooks.get(selected).CookStack.push(new Ingredient("lettuce", new Texture("lettuce.png"), new Texture("prepdLettuce.png"), null));
-                }
+                onClick(screen);
             }
         });
+    }
+
+    public void onClick(GameScreen screen) {
+        Array<Cook> cooks = screen.getCooks();
+        int selected = screen.getSelected();
+        if (cooks.get(selected).CookStack.size() < 5) {
+            cooks.get(selected).CookStack.push(new Ingredient("lettuce", new Texture("lettuce.png"), new Texture("prepdLettuce.png"), null));
+        }
     }
     /*
         * Getter for the lettuce station
